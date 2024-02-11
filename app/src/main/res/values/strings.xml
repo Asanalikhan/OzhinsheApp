@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ozhinshe</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="otkizu">Өткізу</string>
+    <string name="ozhinshe">ÖZINŞE-ге қош келдің</string>
+    <string name="onboardtext">Фильмдер, телехикаялар, ситкомдар, анимациялық жобалар, телебағдарламалар мен реалити-шоулар, аниме және тағы басқалары</string>
+    <string name="ari_qarai">Әрі қарай</string>
+</resources>

@@ -1,11 +1,11 @@
 package com.example.ozhinshe
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.os.Handler
 import androidx.navigation.fragment.NavHostFragment
 import com.example.ozhinshe.databinding.ActivityMainBinding
-import me.relex.circleindicator.CircleIndicator3
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +15,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        supportActionBar?.hide()
+
+        Handler().postDelayed({
+            val intent = Intent(this@MainActivity, SplashScreen::class.java)
+            startActivity(intent)
+            finish()
+        }, 3000)
     }
 }

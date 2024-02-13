@@ -27,6 +27,7 @@
         android:padding="0dp"
         android:text="@string/ari_qarai"
         android:textSize="16sp"
+        android:backgroundTint="@color/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

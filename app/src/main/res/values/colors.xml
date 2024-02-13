@@ -3,4 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="onboarding">#111827FA</color>
+    <color name="background">#111827</color>
+    <color name="undersalem">#9CA3AF</color>
+    <color name="input">#1C2431</color>
+    <color name="border">#374151</color>
+    <color name="login">#B376F7</color>
+    <color name="button">#7E2DFC</color>
 </resources>

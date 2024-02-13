@@ -58,5 +58,9 @@ class OnBoardFragment : Fragment() {
                 }
             }
         })
+
+        binding.button.setOnClickListener {
+            findNavController().navigate(R.id.action_onBoardFragment_to_registrationFragment)
+        }
     }
 }

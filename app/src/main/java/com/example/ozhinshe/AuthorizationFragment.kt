@@ -25,5 +25,32 @@ class AuthorizationFragment : Fragment() {
         binding.toRegistration.setOnClickListener {
             findNavController().navigate(R.id.action_authorizationFragment_to_registrationFragment)
         }
+        binding.btnAuthorization.setOnClickListener {
+            findNavController().navigate(R.id.action_authorizationFragment_to_onBoardFragment)
+        }
+
+        val inputEmail = binding.textInputLayout
+        val inputPassworld = binding.textInputLayout2
+        binding.btnAuthorization.setOnClickListener {
+            val email = inputEmail.editText?.text.toString().trim()
+            val password = inputPassworld.editText?.text.toString().trim()
+
+            if(isValidEmail(email)){
+                inputEmail.error = null
+            }
+            else{
+                inputEmail.error = "Қате формат"
+            }
+            if(password.length >= 6){
+                inputPassworld.error = null
+            }
+            else{
+                inputPassworld.error = "Қате формат"
+            }
+        }
+    }
+    private fun isValidEmail(email: String): Boolean {
+        val emailRegex = "^[a-zA-Z][a-zA-Z0-9._-]*@[a-z]+\\.[a-z]+\$"
+        return email.matches(emailRegex.toRegex())
     }
 }

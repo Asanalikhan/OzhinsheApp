@@ -42,5 +42,8 @@
         <action
             android:id="@+id/action_authorizationFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_authorizationFragment_to_onBoardFragment"
+            app:destination="@id/onBoardFragment" />
     </fragment>
 </navigation>

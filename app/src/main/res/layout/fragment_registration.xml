@@ -189,15 +189,15 @@
         android:id="@+id/btnRegistration"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/button"
         android:fontFamily="sans-serif-medium"
         android:text="@string/registration"
         android:textSize="16sp"
         app:cornerRadius="12dp"
-        android:backgroundTint="@color/button"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/error_mesg" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -224,5 +224,19 @@
             android:textColor="@color/login" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/error_mesg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
+        android:text="Мұндай email-ы бар пайдаланушы тіркелген"
+        android:textColor="#FF402B"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

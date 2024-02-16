@@ -146,15 +146,15 @@
         android:id="@+id/btnAuthorization"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/button"
         android:fontFamily="sans-serif-medium"
         android:text="@string/login"
         android:textSize="16sp"
-        android:layout_marginTop="24dp"
         app:cornerRadius="12dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/error_mesg" />
 
     <LinearLayout
         android:id="@+id/layoutUnder"
@@ -187,6 +187,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="24dp"/>
 
+    <TextView
+        android:id="@+id/error_mesg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:height="22sp"
+        android:visibility="gone"
+        android:text="@string/error_msg"
+        android:textColor="#FF402B"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

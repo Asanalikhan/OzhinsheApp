@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import androidx.navigation.fragment.NavHostFragment
 import com.example.ozhinshe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,5 +21,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, 1500)
+
     }
 }

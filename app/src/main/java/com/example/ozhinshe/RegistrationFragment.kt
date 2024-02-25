@@ -55,19 +55,18 @@ class RegistrationFragment : Fragment() {
             else{
                 inputLayoutEmail.error ="Қате формат"
             }
-            if(password.length >= 6){
-                inputLayoutPassword.error = null
-            }
-            else{
-                inputLayoutPassword.error ="Қате формат"
-            }
             if(password2 == password){
                 inputLayoutPassword2.error = null
             }
             else{
                 inputLayoutPassword2.error = "Құпия сөздер тең емес"
             }
-
+            if(password.length >= 6){
+                inputLayoutPassword.error = null
+            }
+            else{
+                inputLayoutPassword.error ="Қате формат"
+            }
             regirst(RegistrationRequest(email, password))
         }
     }

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,12 +21,15 @@ import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class AuthorizationFragment: Fragment(){
     private lateinit var binding: FragmentAuthorizationBinding
     private lateinit var mainApi: MainApi
+    private val token:AuthViewModel by activityViewModels()
+    private var accessToAuth = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +58,6 @@ class AuthorizationFragment: Fragment(){
             val password = inputPassworld.editText?.text.toString().trim()
             var access = false
             var access1 = false
-            var access2 = false
             if(isValidEmail(email)){
                 inputEmail.error = null
                 access = true
@@ -68,17 +72,18 @@ class AuthorizationFragment: Fragment(){
             }
             else{
                 inputPassworld.error = "Қате формат"
-                access = false
+                access1 = false
             }
-            if(access && access1){
-                auth(AuthRequest(email, password))
-                findNavController().navigate(R.id.action_authorizationFragment_to_homeActivity)
-                requireActivity().finish()
+            if (access && access1) {
+                auth(AuthRequest(email, password)) { success ->
+                    if (success) {
+                        findNavController().navigate(R.id.action_authorizationFragment_to_homeActivity)
+                        requireActivity().finish()
+                    }
+                }
             }
-
         }
     }
-
 
     private fun isValidEmail(email: String): Boolean {
         val emailRegex = "^[a-zA-Z][a-zA-Z0-9._-]*@[a-z]+\\.[a-z]+\$"
@@ -93,19 +98,21 @@ class AuthorizationFragment: Fragment(){
             client(client).addConverterFactory(GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
-    private fun auth(authRequest: AuthRequest){
+    private fun auth(authRequest: AuthRequest, onComplete: (Boolean) -> Unit){
         lifecycleScope.launch(Dispatchers.IO){
             val responce = mainApi.auth(authRequest)
             lifecycleScope.launch(Dispatchers.Main) {
                 if(responce.errorBody() != null){
                     binding.errorMesg.visibility = View.VISIBLE
-                    binding.errorMesg.text = responce.errorBody().toString()
+                    onComplete(false)
                 }
                 else{
                     binding.errorMesg.visibility = View.GONE
+                    onComplete(true)
                 }
                 binding.tvUnderSalemText.text = responce.body()?.email ?: ""
                 val user = responce.body()
+                token.token.value = user?.accessToken
             }
         }
     }

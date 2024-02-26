@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.ozhinshe.data.AuthRequest
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.data.RegistrationRequest
 import com.example.ozhinshe.databinding.FragmentRegistrationBinding
@@ -49,25 +50,41 @@ class RegistrationFragment : Fragment() {
             val email = inputLayoutEmail.editText?.text.toString().trim()
             val password = inputLayoutPassword.editText?.text.toString().trim()
             val password2 = inputLayoutPassword2.editText?.text.toString().trim()
+            var access = false
+            var access1 = false
+            var access2 = false
             if(isValidEmail(email)){
                 inputLayoutEmail.error = null
+                access = true
             }
             else{
                 inputLayoutEmail.error ="Қате формат"
+                var access = false
             }
             if(password2 == password){
                 inputLayoutPassword2.error = null
+                access1 = true
             }
             else{
                 inputLayoutPassword2.error = "Құпия сөздер тең емес"
+                var access1 = false
             }
             if(password.length >= 6){
                 inputLayoutPassword.error = null
+                access2 = true
             }
             else{
                 inputLayoutPassword.error ="Қате формат"
+                var access2 = false
             }
-            regirst(RegistrationRequest(email, password))
+            if (access && access1 && access2) {
+                regirst(RegistrationRequest(email, password)) { success ->
+                    if (success) {
+                        findNavController().navigate(R.id.action_authorizationFragment_to_homeActivity)
+                        requireActivity().finish()
+                    }
+                }
+            }
         }
     }
     private fun isValidEmail(email: String): Boolean {
@@ -83,17 +100,18 @@ class RegistrationFragment : Fragment() {
         client(client).addConverterFactory(GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
-    private fun regirst(registrationRequest: RegistrationRequest){
+    private fun regirst(registrationRequest: RegistrationRequest, onComplete: (Boolean) -> Unit){
         lifecycleScope.launch(Dispatchers.IO){
             val responce = mainApi.regr(registrationRequest)
             lifecycleScope.launch(Dispatchers.Main) {
                 if(responce.errorBody() != null){
                     binding.errorMesg.visibility = View.VISIBLE
+                    onComplete(false)
                 }
                 else{
                     binding.errorMesg.visibility = View.GONE
+                    onComplete(true)
                 }
-
                 val user = responce.body()
                 binding.tvUnderSalemText.text = user?.email
                 viewModel.token.value = user?.accessToken

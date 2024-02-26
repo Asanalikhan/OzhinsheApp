@@ -1,11 +1,14 @@
 package com.example.ozhinshe
 
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.ozhinshe.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
+    private var currentFragment: Fragment? = null
 
     private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +16,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        currentFragment = HomeFragment()
         replaceFragment(HomeFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -27,10 +31,10 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, fragment)
-        fragmentTransaction.commit()
+    private fun replaceFragment(fragment: Fragment) {
+        if (fragment !== currentFragment) {
+            currentFragment = fragment
+            supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).commitNow()
+        }
     }
 }

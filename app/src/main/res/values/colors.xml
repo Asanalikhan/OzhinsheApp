@@ -9,4 +9,5 @@
     <color name="border">#374151</color>
     <color name="login">#B376F7</color>
     <color name="button">#7E2DFC</color>
+    <color name="unselected">#6B7280</color>
 </resources>

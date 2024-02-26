@@ -13,7 +13,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav">
+        app:menu="@menu/bottom_nav"
+        app:itemIconTint="@color/selector_bottom_nav_item_color"
+        app:itemTextColor="@color/selector_bottom_nav_item_color">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <FrameLayout

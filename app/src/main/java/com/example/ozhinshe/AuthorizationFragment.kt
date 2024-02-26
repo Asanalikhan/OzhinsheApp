@@ -29,11 +29,10 @@ class AuthorizationFragment: Fragment(){
     private lateinit var binding: FragmentAuthorizationBinding
     private lateinit var mainApi: MainApi
     private val token:AuthViewModel by activityViewModels()
-    private var accessToAuth = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAuthorizationBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

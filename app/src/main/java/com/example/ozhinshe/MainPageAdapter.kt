@@ -17,8 +17,8 @@ class MainPageAdapter():RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder>
             Glide.with(binding.root).load(item.poster.link).into(binding.rcMovieImg)
         }
     }
-    fun submitList(list: List<Movy>){
-        adapterList.addAll(list)
+    fun submitList(list: Movy){
+        adapterList.addAll(listOf(list))
     }
     override fun onCreateViewHolder(
         parent: ViewGroup,

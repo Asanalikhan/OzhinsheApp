@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ViewPagerAdapter(private val title: List<String>, private val image: List<Int>): RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
 
-   inner class Pager2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-       val itemTitle: TextView = itemView.findViewById(R.id.tvTitleOnboard)
-       val itemImage: ImageView = itemView.findViewById(R.id.imageView)
-   }
+    inner class Pager2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val itemTitle: TextView = itemView.findViewById(R.id.tvTitleOnboard)
+        val itemImage: ImageView = itemView.findViewById(R.id.imageView)
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

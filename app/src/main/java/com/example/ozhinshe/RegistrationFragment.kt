@@ -22,7 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RegistrationFragment : Fragment() {
     private lateinit var binding: FragmentRegistrationBinding
-    private val viewModel: AuthViewModel by activityViewModels()
     private lateinit var mainApi: MainApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -114,7 +113,6 @@ class RegistrationFragment : Fragment() {
                 }
                 val user = responce.body()
                 binding.tvUnderSalemText.text = user?.email
-                viewModel.token.value = user?.accessToken
             }
         }
     }

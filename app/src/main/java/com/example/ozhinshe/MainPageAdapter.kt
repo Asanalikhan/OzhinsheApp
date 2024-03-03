@@ -14,7 +14,7 @@ class MainPageAdapter():RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder>
         fun onBind(item: Movy){
             binding.rcMovieName.text = item.name
             binding.rcMovieDesc.text = item.description
-            Glide.with(binding.root).load(item.poster.link).into(binding.rcMovieImg)
+            //Glide.with(binding.root).load(item.poster.link).into(binding.rcMovieImg)
         }
     }
     fun submitList(list: Movy){

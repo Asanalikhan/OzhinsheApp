@@ -7,19 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ozhinshe.data.MainApi
-import com.example.ozhinshe.data.Movy
 import com.example.ozhinshe.databinding.FragmentHomeBinding
+import com.example.ozhinshe.modiedata.MovieResponce
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 
 class HomeFragment : Fragment() {
 
@@ -41,17 +38,14 @@ class HomeFragment : Fragment() {
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)
-        binding.ozinshe.text = token
         lifecycleScope.launch {
             try {
-                val movies: List<Movy> = mainApi.getMovies(token = "Bearer $token")
-                Log.e("HomeFragment1", "$movies")
+                val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
+                adapter.submitList(response.first().movies)
             } catch (e: Exception) {
                 Log.e("HomeFragment2", "Exception: ${e.message}")
             }
         }
-
-
     }
     private fun initRetrofit(){
         val interceptor = HttpLoggingInterceptor()

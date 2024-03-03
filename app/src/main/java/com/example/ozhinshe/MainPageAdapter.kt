@@ -1,11 +1,12 @@
 package com.example.ozhinshe
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.ozhinshe.data.Movy
 import com.example.ozhinshe.databinding.MovieCardBinding
+import com.example.ozhinshe.modiedata.Movy
 
 class MainPageAdapter():RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder>() {
 
@@ -14,11 +15,15 @@ class MainPageAdapter():RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder>
         fun onBind(item: Movy){
             binding.rcMovieName.text = item.name
             binding.rcMovieDesc.text = item.description
-            //Glide.with(binding.root).load(item.poster.link).into(binding.rcMovieImg)
+            val into = Glide.with(binding.root).load(item.poster.link)
+                .into(binding.rcMovieImg)
         }
     }
-    fun submitList(list: Movy){
-        adapterList.addAll(listOf(list))
+    @SuppressLint("NotifyDataSetChanged")
+    fun submitList(list: List<Movy>) {
+        adapterList.clear()
+        adapterList.addAll(list)
+        notifyDataSetChanged()
     }
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -34,5 +39,5 @@ class MainPageAdapter():RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder>
     override fun getItemCount(): Int {
         return adapterList.size
     }
-
 }
+

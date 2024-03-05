@@ -104,6 +104,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chose_genre"
+            android:textSize="16sp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-medium"
+            android:layout_gravity="start"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcView4"
+            android:layout_marginStart="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

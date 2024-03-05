@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentHomeBinding
+import com.example.ozhinshe.modiedata.GenresResponce
 import com.example.ozhinshe.modiedata.MovieResponce
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter1: WatchedMovieAdapter
     private lateinit var adapter2: TrendAdapter
     private lateinit var adapter3: ForYouAdapter
+    private lateinit var adapter4: GenresAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,16 +48,19 @@ class HomeFragment : Fragment() {
         initRcView1()
         initRcView2()
         initRcView3()
+        initRcView4()
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)
         lifecycleScope.launch {
             try {
                 val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
+                val responce1: GenresResponce = mainApi.getGenres(token = "Bearer $token")
                 adapter.submitList(response[1].movies)
                 adapter1.submitList1(response[0].movies)
                 adapter2.submitList(response[0].movies)
                 adapter3.submitList(response[1].movies)
+                adapter4.submitList(responce1.content)
             } catch (e: Exception) {
                 Log.e("HomeFragment2", "Exception: ${e.message}")
             }
@@ -97,5 +102,12 @@ class HomeFragment : Fragment() {
         rcView3.adapter = adapter3
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(rcView3)
+    }
+    private fun initRcView4() = with(binding) {
+        adapter4 = GenresAdapter()
+        rcView4.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rcView4.adapter = adapter4
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(rcView4)
     }
 }

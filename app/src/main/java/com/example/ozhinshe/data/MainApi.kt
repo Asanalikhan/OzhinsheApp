@@ -1,5 +1,6 @@
 package com.example.ozhinshe.data
 
+import com.example.ozhinshe.modiedata.GenresResponce
 import com.example.ozhinshe.modiedata.MovieResponce
 import com.example.ozhinshe.modiedata.Movy
 import retrofit2.Response
@@ -18,4 +19,9 @@ interface MainApi {
         @Header("accept") acceptHeader: String = "application/json",
         @Header("Authorization") token: String
     ): MovieResponce
+    @GET("core/V1/genres/page")
+    suspend fun getGenres(
+        @Header("accept") acceptHeader: String = "application/json",
+        @Header("Authorization") token: String
+    ): GenresResponce
 }

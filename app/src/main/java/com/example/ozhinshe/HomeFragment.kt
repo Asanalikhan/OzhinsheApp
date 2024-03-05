@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var mainApi: MainApi
     private lateinit var adapter: MainPageAdapter
+    private lateinit var adapter1: WatchedMovieAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,13 +41,15 @@ class HomeFragment : Fragment() {
 
         initRetrofit()
         initRcView()
+        initRcView1()
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)
         lifecycleScope.launch {
             try {
                 val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
-                adapter.submitList(response.first().movies)
+                adapter.submitList(response[1].movies)
+                adapter1.submitList1(response[0].movies)
             } catch (e: Exception) {
                 Log.e("HomeFragment2", "Exception: ${e.message}")
             }
@@ -68,5 +71,11 @@ class HomeFragment : Fragment() {
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(rcView)
     }
-
+    private fun initRcView1() = with(binding) {
+        adapter1 = WatchedMovieAdapter()
+        rcView1.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rcView1.adapter = adapter1
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(rcView1)
+    }
 }

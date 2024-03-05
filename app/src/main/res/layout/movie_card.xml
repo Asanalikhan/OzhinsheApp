@@ -21,6 +21,17 @@
             android:layout_width="300dp"
             android:layout_height="175dp"
             android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tekehikaya_border"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif"
+            android:layout_margin="8dp"
+            android:text="@string/telehikaya"/>
 
         </androidx.cardview.widget.CardView>
 

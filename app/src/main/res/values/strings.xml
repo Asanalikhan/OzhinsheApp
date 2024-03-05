@@ -19,4 +19,6 @@
     <string name="forgot_password">Құпия сөзді ұмыттыңыз ба?</string>
     <string name="Or">Немесе</string>
     <string name="error_msg">Email немесе құпия сөз дурыс емес</string>
+    <string name="telehikaya">Телехикая</string>
+    <string name="continue_watching">Қарауды жалғастырыңыз</string>
 </resources>

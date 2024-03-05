@@ -29,6 +29,8 @@ class HomeFragment : Fragment() {
     private lateinit var mainApi: MainApi
     private lateinit var adapter: MainPageAdapter
     private lateinit var adapter1: WatchedMovieAdapter
+    private lateinit var adapter2: TrendAdapter
+    private lateinit var adapter3: ForYouAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +44,8 @@ class HomeFragment : Fragment() {
         initRetrofit()
         initRcView()
         initRcView1()
+        initRcView2()
+        initRcView3()
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)
@@ -50,6 +54,8 @@ class HomeFragment : Fragment() {
                 val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
                 adapter.submitList(response[1].movies)
                 adapter1.submitList1(response[0].movies)
+                adapter2.submitList(response[0].movies)
+                adapter3.submitList(response[1].movies)
             } catch (e: Exception) {
                 Log.e("HomeFragment2", "Exception: ${e.message}")
             }
@@ -77,5 +83,19 @@ class HomeFragment : Fragment() {
         rcView1.adapter = adapter1
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(rcView1)
+    }
+    private fun initRcView2() = with(binding) {
+        adapter2 = TrendAdapter()
+        rcView2.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rcView2.adapter = adapter2
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(rcView2)
+    }
+    private fun initRcView3() = with(binding) {
+        adapter3 = ForYouAdapter()
+        rcView3.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rcView3.adapter = adapter3
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(rcView3)
     }
 }

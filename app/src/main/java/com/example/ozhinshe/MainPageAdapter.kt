@@ -15,7 +15,7 @@ class MainPageAdapter():RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder>
         fun onBind(item: Movy){
             binding.rcMovieName.text = item.name
             binding.rcMovieDesc.text = item.description
-            val into = Glide.with(binding.root).load(item.poster.link)
+            val into = Glide.with(binding.root).load(item.screenshots[0].link)
                 .into(binding.rcMovieImg)
         }
     }

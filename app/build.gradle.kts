@@ -61,5 +61,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
     implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+
 
 }

@@ -1,14 +1,18 @@
 package com.example.ozhinshe
 
+import android.R
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentHomeBinding
 import com.example.ozhinshe.modiedata.MovieResponce
@@ -17,6 +21,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class HomeFragment : Fragment() {
 
@@ -56,9 +61,12 @@ class HomeFragment : Fragment() {
         client(client).addConverterFactory(GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
-    private fun initRcView() = with(binding){
+    private fun initRcView() = with(binding) {
         adapter = MainPageAdapter()
-        rcView.layoutManager = LinearLayoutManager(context)
+        rcView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rcView.adapter = adapter
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(rcView)
     }
+
 }

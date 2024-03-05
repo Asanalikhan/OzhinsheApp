@@ -28,12 +28,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:reverseLayout="true"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

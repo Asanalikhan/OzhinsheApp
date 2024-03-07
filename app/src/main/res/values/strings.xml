@@ -25,4 +25,8 @@
     <string name="all">Барлығы</string>
     <string name="for_you">Сізге арналған фильмдер</string>
     <string name="chose_genre">Жанрды таңдаңыз</string>
+    <string name="new_zhoba">Жаңа жобалар</string>
+    <string name="by_age">Жасына сәйкес</string>
+    <string name="derekti">Деректі фильм</string>
+    <string name="shetel">Шетел фильмдері</string>
 </resources>

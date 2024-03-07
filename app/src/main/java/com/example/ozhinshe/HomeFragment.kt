@@ -1,6 +1,5 @@
 package com.example.ozhinshe
 
-import android.R
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentHomeBinding
+import com.example.ozhinshe.modiedata.CategoryAges
+import com.example.ozhinshe.modiedata.DescMovies
 import com.example.ozhinshe.modiedata.GenresResponce
 import com.example.ozhinshe.modiedata.MovieResponce
 import kotlinx.coroutines.launch
@@ -33,6 +34,12 @@ class HomeFragment : Fragment() {
     private lateinit var adapter2: TrendAdapter
     private lateinit var adapter3: ForYouAdapter
     private lateinit var adapter4: GenresAdapter
+    private lateinit var adapter5: ZhobalarAdapter
+    private lateinit var adapter6: RealityAdapter
+    private lateinit var adapter7: TelehikayaAdapter
+    private lateinit var adapter8: AgesAdapter
+    private lateinit var adapter9: DerektiAdapter
+    private lateinit var adapter10: ShetelAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,11 +51,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRetrofit()
-        initRcView()
-        initRcView1()
-        initRcView2()
-        initRcView3()
-        initRcView4()
+        initRecyclerViewAdapters()
+        initRecyclerViews()
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)
@@ -56,11 +60,21 @@ class HomeFragment : Fragment() {
             try {
                 val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
                 val responce1: GenresResponce = mainApi.getGenres(token = "Bearer $token")
+                val responce2: DescMovies = mainApi.descMovies(token = "Bearer $token")
+                val responce3: DescMovies = mainApi.genreMovies(direction = "DESC", genreId = 31, token = "Bearer $token")
+                val responce4: DescMovies = mainApi.genreMovies(direction = "ASC", genreId = 5, token = "Bearer $token")
+                val responce5: CategoryAges = mainApi.getCategoryAges(token = "Bearer $token")
                 adapter.submitList(response[1].movies)
                 adapter1.submitList1(response[0].movies)
                 adapter2.submitList(response[0].movies)
                 adapter3.submitList(response[1].movies)
                 adapter4.submitList(responce1.content)
+                adapter5.submitList(responce2.content)
+                adapter6.submitList(responce3.content)
+                adapter7.submitList(responce4.content)
+                adapter8.submitList(responce5.toMutableList())
+                adapter9.submitList(response[3].movies)
+                adapter10.submitList(response[4].movies)
             } catch (e: Exception) {
                 Log.e("HomeFragment2", "Exception: ${e.message}")
             }
@@ -75,39 +89,36 @@ class HomeFragment : Fragment() {
         client(client).addConverterFactory(GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
-    private fun initRcView() = with(binding) {
+    private fun initRecyclerViews() {
+        initRecyclerView(adapter, binding.rcView)
+        initRecyclerView(adapter1, binding.rcView1)
+        initRecyclerView(adapter2, binding.rcView2)
+        initRecyclerView(adapter3, binding.rcView3)
+        initRecyclerView(adapter4, binding.rcView4)
+        initRecyclerView(adapter5, binding.rcView5)
+        initRecyclerView(adapter6, binding.rcView6)
+        initRecyclerView(adapter7, binding.rcView7)
+        initRecyclerView(adapter8, binding.rcView8)
+        initRecyclerView(adapter9, binding.rcView9)
+        initRecyclerView(adapter10, binding.rcView10)
+    }
+    private fun initRecyclerViewAdapters() {
         adapter = MainPageAdapter()
-        rcView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rcView.adapter = adapter
-        val snapHelper: SnapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rcView)
-    }
-    private fun initRcView1() = with(binding) {
         adapter1 = WatchedMovieAdapter()
-        rcView1.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rcView1.adapter = adapter1
-        val snapHelper: SnapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rcView1)
-    }
-    private fun initRcView2() = with(binding) {
         adapter2 = TrendAdapter()
-        rcView2.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rcView2.adapter = adapter2
-        val snapHelper: SnapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rcView2)
-    }
-    private fun initRcView3() = with(binding) {
         adapter3 = ForYouAdapter()
-        rcView3.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rcView3.adapter = adapter3
-        val snapHelper: SnapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rcView3)
-    }
-    private fun initRcView4() = with(binding) {
         adapter4 = GenresAdapter()
-        rcView4.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rcView4.adapter = adapter4
+        adapter5 = ZhobalarAdapter()
+        adapter6 = RealityAdapter()
+        adapter7 = TelehikayaAdapter()
+        adapter8 = AgesAdapter()
+        adapter9 = DerektiAdapter()
+        adapter10 = ShetelAdapter()
+    }
+    private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = adapter
         val snapHelper: SnapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rcView4)
+        snapHelper.attachToRecyclerView(recyclerView)
     }
 }

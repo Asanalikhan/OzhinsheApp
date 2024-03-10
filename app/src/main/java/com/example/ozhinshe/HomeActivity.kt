@@ -1,9 +1,7 @@
 package com.example.ozhinshe
 
-import android.content.res.ColorStateList
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.ozhinshe.databinding.ActivityHomeBinding
 
@@ -31,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         if (fragment !== currentFragment) {
             currentFragment = fragment
             supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).commitNow()

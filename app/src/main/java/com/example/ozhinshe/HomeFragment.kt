@@ -79,6 +79,11 @@ class HomeFragment : Fragment() {
                 Log.e("HomeFragment2", "Exception: ${e.message}")
             }
         }
+        binding.ozinshe.setOnClickListener {
+            if (activity is HomeActivity) {
+                (activity as HomeActivity).replaceFragment(DetailedFragment())
+            }
+        }
     }
     private fun initRetrofit(){
         val interceptor = HttpLoggingInterceptor()

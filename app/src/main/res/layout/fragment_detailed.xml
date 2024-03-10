@@ -22,6 +22,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="55dp"
+                android:layout_marginStart="10dp"
                 android:contentDescription="@string/otkizu"
                 android:padding="0dp"
                 android:src="@drawable/back2"
@@ -155,7 +156,7 @@
                     android:text="@string/produser"
                     android:textSize="14sp"
                     android:textColor="@color/regiser"/>
-                <TextViewy
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-20dp"

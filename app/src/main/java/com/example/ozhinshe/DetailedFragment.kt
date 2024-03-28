@@ -13,7 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class DetailedFragment : Fragment() {
+class DetailedFragment : Fragment(){
 
     private lateinit var binding: FragmentDetailedBinding
     private lateinit var mainApi: MainApi
@@ -33,6 +33,11 @@ class DetailedFragment : Fragment() {
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)
+        binding.imageButton.setOnClickListener{
+            (activity as? HomeActivity)?.replaceFragment(HomeFragment())
+        }
+        val bundle = arguments
+        val id = bundle?.getString("key")
 
     }
     private fun initRetrofit(){

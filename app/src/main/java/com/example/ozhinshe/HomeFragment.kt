@@ -24,8 +24,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var mainApi: MainApi
@@ -40,6 +39,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter8: AgesAdapter
     private lateinit var adapter9: DerektiAdapter
     private lateinit var adapter10: ShetelAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +47,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -79,21 +80,20 @@ class HomeFragment : Fragment() {
                 Log.e("HomeFragment2", "Exception: ${e.message}")
             }
         }
-        binding.ozinshe.setOnClickListener {
-            if (activity is HomeActivity) {
-                (activity as HomeActivity).replaceFragment(DetailedFragment())
-            }
-        }
     }
+
     private fun initRetrofit(){
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
         val BASE_URL = "http://api.ozinshe.com"
-        val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).
-        client(client).addConverterFactory(GsonConverterFactory.create()).build()
+        val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
         mainApi = retrofit.create(MainApi::class.java)
     }
+
     private fun initRecyclerViews() {
         initRecyclerView(adapter, binding.rcView)
         initRecyclerView(adapter1, binding.rcView1)
@@ -107,8 +107,10 @@ class HomeFragment : Fragment() {
         initRecyclerView(adapter9, binding.rcView9)
         initRecyclerView(adapter10, binding.rcView10)
     }
+
     private fun initRecyclerViewAdapters() {
-        adapter = MainPageAdapter()
+        adapter = MainPageAdapter(childFragmentManager)
+        adapter.setOnItemClickListener(this)
         adapter1 = WatchedMovieAdapter()
         adapter2 = TrendAdapter()
         adapter3 = ForYouAdapter()
@@ -120,10 +122,18 @@ class HomeFragment : Fragment() {
         adapter9 = DerektiAdapter()
         adapter10 = ShetelAdapter()
     }
+
     private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
+    }
+    override fun onItemClick(id : Int) {
+        val bundle = Bundle()
+        bundle.putString("key", id.toString())
+        val detailedFragment = DetailedFragment()
+        detailedFragment.arguments = bundle
+        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
     }
 }

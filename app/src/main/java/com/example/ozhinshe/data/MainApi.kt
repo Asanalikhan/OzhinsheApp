@@ -4,11 +4,13 @@ import com.example.ozhinshe.modiedata.CategoryAges
 import com.example.ozhinshe.modiedata.DescMovies
 import com.example.ozhinshe.modiedata.GenresResponce
 import com.example.ozhinshe.modiedata.MovieResponce
+import com.example.ozhinshe.modiedata.Movy
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MainApi {
@@ -50,4 +52,9 @@ interface MainApi {
         @Header("accept") acceptHeader: String = "application/json",
         @Header("Authorization") token: String
     ): CategoryAges
+    @GET("/core/V1/movies/{id}")
+    suspend fun getMovie(
+        @Path("id") id: Int?,
+        @Header("Authorization") token: String,
+    ): Movy
 }

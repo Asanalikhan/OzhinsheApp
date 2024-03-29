@@ -6,19 +6,16 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ozhinshe.HomeFragment
+import com.example.ozhinshe.OnItemClickListener
 import com.example.ozhinshe.databinding.MovieCardBinding
 import com.example.ozhinshe.modiedata.Movy
 
-interface OnItemClickListener {
-    fun onItemClick(id: Int)
-}
-class MainPageAdapter(private val fragmentManager: FragmentManager) :
-    RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder>() {
+
+class MainPageAdapter(childFragmentManager: FragmentManager) : RecyclerView.Adapter<MainPageAdapter.MainPageViewHolder>() {
     private val adapterList = mutableListOf<Movy>()
     private var itemClickListener: OnItemClickListener? = null
 
-    inner class MainPageViewHolder(private var binding: MovieCardBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class MainPageViewHolder(private var binding: MovieCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: Movy) {
             binding.rcMovieName.text = item.name
             binding.rcMovieDesc.text = item.description

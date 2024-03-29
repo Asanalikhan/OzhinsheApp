@@ -17,7 +17,6 @@ import com.example.ozhinshe.adapters.DerektiAdapter
 import com.example.ozhinshe.adapters.ForYouAdapter
 import com.example.ozhinshe.adapters.GenresAdapter
 import com.example.ozhinshe.adapters.MainPageAdapter
-import com.example.ozhinshe.adapters.OnItemClickListener
 import com.example.ozhinshe.adapters.RealityAdapter
 import com.example.ozhinshe.adapters.ShetelAdapter
 import com.example.ozhinshe.adapters.TelehikayaAdapter
@@ -123,16 +122,24 @@ class HomeFragment : Fragment(), OnItemClickListener {
     private fun initRecyclerViewAdapters() {
         adapter = MainPageAdapter(childFragmentManager)
         adapter.setOnItemClickListener(this)
-        adapter1 = WatchedMovieAdapter()
-        adapter2 = TrendAdapter()
-        adapter3 = ForYouAdapter()
+        adapter1 = WatchedMovieAdapter(childFragmentManager)
+        adapter1.setOnItemClickListener(this)
+        adapter2 = TrendAdapter(childFragmentManager)
+        adapter2.setOnItemClickListener(this)
+        adapter3 = ForYouAdapter(childFragmentManager)
+        adapter3.setOnItemClickListener(this)
         adapter4 = GenresAdapter()
-        adapter5 = ZhobalarAdapter()
-        adapter6 = RealityAdapter()
-        adapter7 = TelehikayaAdapter()
+        adapter5 = ZhobalarAdapter(childFragmentManager)
+        adapter5.setOnItemClickListener(this)
+        adapter6 = RealityAdapter(childFragmentManager)
+        adapter6.setOnItemClickListener(this)
+        adapter7 = TelehikayaAdapter(childFragmentManager)
+        adapter7.setOnItemClickListener(this)
         adapter8 = AgesAdapter()
-        adapter9 = DerektiAdapter()
-        adapter10 = ShetelAdapter()
+        adapter9 = DerektiAdapter(childFragmentManager)
+        adapter9.setOnItemClickListener(this)
+        adapter10 = ShetelAdapter(childFragmentManager)
+        adapter10.setOnItemClickListener(this)
     }
 
     private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {

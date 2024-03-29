@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import com.bumptech.glide.Glide
 import com.example.ozhinshe.databinding.CardMovieBinding
 import com.example.ozhinshe.modiedata.Movy
 
-class ShetelAdapter:RecyclerView.Adapter<ShetelAdapter.ShetelViewHolder>() {
+class RealityAdapter: RecyclerView.Adapter<RealityAdapter.RealityViewHolder>() {
 
     private val adapterList = mutableListOf<Movy>()
-    inner class ShetelViewHolder(private val binding: CardMovieBinding): RecyclerView.ViewHolder(binding.root){
+    inner class RealityViewHolder(private val binding: CardMovieBinding): RecyclerView.ViewHolder(binding.root){
         fun onBind(movy: Movy) {
             binding.rcMovieName.text = movy.name
             binding.rcMovieGenre.text = movy.genres.last().name
@@ -19,6 +19,7 @@ class ShetelAdapter:RecyclerView.Adapter<ShetelAdapter.ShetelViewHolder>() {
                 .into(binding.rcMovieImg)
         }
     }
+
     @SuppressLint("NotifyDataSetChanged")
     fun submitList(list: List<Movy>) {
         adapterList.clear()
@@ -28,12 +29,14 @@ class ShetelAdapter:RecyclerView.Adapter<ShetelAdapter.ShetelViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ShetelAdapter.ShetelViewHolder {
-        return ShetelViewHolder(CardMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    ): RealityViewHolder {
+        return RealityViewHolder(CardMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
-    override fun onBindViewHolder(holder: ShetelAdapter.ShetelViewHolder, position: Int) {
+
+    override fun onBindViewHolder(holder: RealityViewHolder, position: Int) {
         holder.onBind(adapterList[position])
     }
+
     override fun getItemCount(): Int {
         return adapterList.size
     }

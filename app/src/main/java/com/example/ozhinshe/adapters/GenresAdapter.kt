@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -29,11 +29,11 @@ class GenresAdapter: RecyclerView.Adapter<GenresAdapter.GenresViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): GenresAdapter.GenresViewHolder {
+    ): GenresViewHolder {
         return GenresViewHolder(GenresCardBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun onBindViewHolder(holder: GenresAdapter.GenresViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GenresViewHolder, position: Int) {
         holder.onBind(adapterList[position])
     }
 

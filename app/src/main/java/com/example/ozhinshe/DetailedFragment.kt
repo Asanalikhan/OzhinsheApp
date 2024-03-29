@@ -14,9 +14,12 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
+import com.example.ozhinshe.adapters.ScreenshotAdapter
+import com.example.ozhinshe.adapters.UqsasAdapter
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentDetailedBinding
 import com.example.ozhinshe.modiedata.Movy
+import com.example.ozhinshe.modiedata.Screenshot
 import com.example.ozhinshe.modiedata.UqsasGenre
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,7 +34,9 @@ class DetailedFragment : Fragment(){
     private lateinit var mainApi: MainApi
     private lateinit var responce: Movy
     private lateinit var responce1: UqsasGenre
+    private lateinit var responce2: List<Screenshot>
     private lateinit var adapter: UqsasAdapter
+    private lateinit var adapter1: ScreenshotAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,12 +60,14 @@ class DetailedFragment : Fragment(){
         val bundle = arguments
         val id = bundle?.getString("key")?.toInt()
         adapter = UqsasAdapter()
+        adapter1 = ScreenshotAdapter()
         initRecyclerView(adapter, binding.rcView2)
-
+        initRecyclerView(adapter1, binding.rcView)
         lifecycleScope.launch(Dispatchers.IO) {
             try{
                 responce = mainApi.getMovie(id = id, token = "Bearer $token")
                 responce1 = mainApi.uqsasMovies(direction = "DESC", genreId = id, token = "Bearer $token")
+                responce2 = mainApi.getScreenshots(id = id, token = "Bearer $token")
                 lifecycleScope.launch(Dispatchers.Main) {
                     binding.cvMovieName.text = responce.name
                     binding.cvMovieDesc.text = "" + responce.year + "." + responce.movieType + "." + responce.seasonCount + " сезон," + responce.seriesCount + " серия."
@@ -71,6 +78,7 @@ class DetailedFragment : Fragment(){
                     binding.producer.text = responce.producer
                     binding.bolimder.text = "" + responce.seasonCount + " сезон," + responce.seriesCount + " серия"
                     adapter.submitList(responce1.content)
+                    adapter1.submitList(responce2)
                 }
             }catch (e: Exception){
                 Log.e("DetailedFragment", "Exception: ${e.message}")

@@ -5,6 +5,7 @@ import com.example.ozhinshe.modiedata.DescMovies
 import com.example.ozhinshe.modiedata.GenresResponce
 import com.example.ozhinshe.modiedata.MovieResponce
 import com.example.ozhinshe.modiedata.Movy
+import com.example.ozhinshe.modiedata.Screenshot
 import com.example.ozhinshe.modiedata.UqsasGenre
 import retrofit2.Response
 import retrofit2.http.Body
@@ -68,4 +69,9 @@ interface MainApi {
         @Header("accept") acceptHeader: String = "application/json",
         @Header("Authorization") token: String
     ): UqsasGenre
+    @GET("core/V1/screenshots/{movieId}")
+    suspend fun getScreenshots(
+        @Path("movieId") id: Int?,
+        @Header("Authorization") token: String
+    ):List<Screenshot>
 }

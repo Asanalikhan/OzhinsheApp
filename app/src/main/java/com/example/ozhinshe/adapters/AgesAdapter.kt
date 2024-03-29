@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -24,10 +24,10 @@ class AgesAdapter: RecyclerView.Adapter<AgesAdapter.AgesViewHolder>() {
         adapterList.addAll(list)
         notifyDataSetChanged()
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgesAdapter.AgesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgesViewHolder {
         return AgesViewHolder(GenresCardBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
-    override fun onBindViewHolder(holder: AgesAdapter.AgesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AgesViewHolder, position: Int) {
         holder.onBind(adapterList[position])
     }
     override fun getItemCount(): Int {

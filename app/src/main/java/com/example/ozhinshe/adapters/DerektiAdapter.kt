@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -27,11 +27,11 @@ class DerektiAdapter: RecyclerView.Adapter<DerektiAdapter.DerektiViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DerektiAdapter.DerektiViewHolder {
+    ): DerektiViewHolder {
         return DerektiViewHolder(CardMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun onBindViewHolder(holder: DerektiAdapter.DerektiViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DerektiViewHolder, position: Int) {
         holder.onBind(adapterList[position])
     }
 

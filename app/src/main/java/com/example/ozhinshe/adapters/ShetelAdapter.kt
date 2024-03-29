@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import com.bumptech.glide.Glide
 import com.example.ozhinshe.databinding.CardMovieBinding
 import com.example.ozhinshe.modiedata.Movy
 
-class TelehikayaAdapter:RecyclerView.Adapter<TelehikayaAdapter.TelehikayaViewHolder>() {
+class ShetelAdapter:RecyclerView.Adapter<ShetelAdapter.ShetelViewHolder>() {
 
     private val adapterList = mutableListOf<Movy>()
-    inner class TelehikayaViewHolder(private val binding: CardMovieBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ShetelViewHolder(private val binding: CardMovieBinding): RecyclerView.ViewHolder(binding.root){
         fun onBind(movy: Movy) {
             binding.rcMovieName.text = movy.name
             binding.rcMovieGenre.text = movy.genres.last().name
@@ -28,14 +28,12 @@ class TelehikayaAdapter:RecyclerView.Adapter<TelehikayaAdapter.TelehikayaViewHol
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): TelehikayaAdapter.TelehikayaViewHolder {
-        return TelehikayaViewHolder(CardMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    ): ShetelViewHolder {
+        return ShetelViewHolder(CardMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
-
-    override fun onBindViewHolder(holder: TelehikayaAdapter.TelehikayaViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ShetelViewHolder, position: Int) {
         holder.onBind(adapterList[position])
     }
-
     override fun getItemCount(): Int {
         return adapterList.size
     }

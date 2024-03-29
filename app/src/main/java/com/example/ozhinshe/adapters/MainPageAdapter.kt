@@ -1,10 +1,11 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.ozhinshe.HomeFragment
 import com.example.ozhinshe.databinding.MovieCardBinding
 import com.example.ozhinshe.modiedata.Movy
 
@@ -41,7 +42,7 @@ class MainPageAdapter(private val fragmentManager: FragmentManager) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MainPageAdapter.MainPageViewHolder {
+    ): MainPageViewHolder {
         return MainPageViewHolder(
             MovieCardBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -51,7 +52,7 @@ class MainPageAdapter(private val fragmentManager: FragmentManager) :
         )
     }
 
-    override fun onBindViewHolder(holder: MainPageAdapter.MainPageViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MainPageViewHolder, position: Int) {
         holder.onBind(adapterList[position])
     }
 

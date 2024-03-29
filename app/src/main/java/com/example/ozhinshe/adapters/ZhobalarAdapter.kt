@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,11 +8,11 @@ import com.bumptech.glide.Glide
 import com.example.ozhinshe.databinding.CardMovieBinding
 import com.example.ozhinshe.modiedata.Movy
 
-class TrendAdapter(): RecyclerView.Adapter<TrendAdapter.TrendViewHolder>() {
+class ZhobalarAdapter: RecyclerView.Adapter<ZhobalarAdapter.ZobalarHolderView>() {
 
     private val adapterList = mutableListOf<Movy>()
 
-    inner class TrendViewHolder(private val binding: CardMovieBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ZobalarHolderView(private val binding: CardMovieBinding): RecyclerView.ViewHolder(binding.root){
         fun onBind(movy: Movy) {
             binding.rcMovieName.text = movy.name
             binding.rcMovieGenre.text = movy.genres.last().name
@@ -31,11 +31,11 @@ class TrendAdapter(): RecyclerView.Adapter<TrendAdapter.TrendViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): TrendAdapter.TrendViewHolder {
-        return TrendViewHolder(CardMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    ): ZobalarHolderView {
+        return ZobalarHolderView(CardMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun onBindViewHolder(holder: TrendAdapter.TrendViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ZobalarHolderView, position: Int) {
         holder.onBind(adapterList[position])
     }
 

@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -32,12 +32,12 @@ class WatchedMovieAdapter(): RecyclerView.Adapter<WatchedMovieAdapter.WatchedMov
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): WatchedMovieAdapter.WatchedMovieViewHolder {
+    ): WatchedMovieViewHolder {
         return WatchedMovieViewHolder(WatchedMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(
-        holder: WatchedMovieAdapter.WatchedMovieViewHolder,
+        holder: WatchedMovieViewHolder,
         position: Int
     ) {
         holder.onBind(adapterList[itemCount - 1 - position])

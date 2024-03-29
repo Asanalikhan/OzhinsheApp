@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentDetailedBinding
 import com.example.ozhinshe.modiedata.Movy
+import com.example.ozhinshe.modiedata.UqsasGenre
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -29,6 +30,7 @@ class DetailedFragment : Fragment(){
     private lateinit var binding: FragmentDetailedBinding
     private lateinit var mainApi: MainApi
     private lateinit var responce: Movy
+    private lateinit var responce1: UqsasGenre
     private lateinit var adapter: UqsasAdapter
 
     override fun onCreateView(
@@ -58,6 +60,7 @@ class DetailedFragment : Fragment(){
         lifecycleScope.launch(Dispatchers.IO) {
             try{
                 responce = mainApi.getMovie(id = id, token = "Bearer $token")
+                responce1 = mainApi.uqsasMovies(direction = "DESC", genreId = id, token = "Bearer $token")
                 lifecycleScope.launch(Dispatchers.Main) {
                     binding.cvMovieName.text = responce.name
                     binding.cvMovieDesc.text = "" + responce.year + "." + responce.movieType + "." + responce.seasonCount + " сезон," + responce.seriesCount + " серия."
@@ -67,7 +70,7 @@ class DetailedFragment : Fragment(){
                     binding.director.text = responce.director
                     binding.producer.text = responce.producer
                     binding.bolimder.text = "" + responce.seasonCount + " сезон," + responce.seriesCount + " серия"
-
+                    adapter.submitList(responce1.content)
                 }
             }catch (e: Exception){
                 Log.e("DetailedFragment", "Exception: ${e.message}")

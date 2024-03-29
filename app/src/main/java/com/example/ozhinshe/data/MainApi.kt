@@ -5,6 +5,7 @@ import com.example.ozhinshe.modiedata.DescMovies
 import com.example.ozhinshe.modiedata.GenresResponce
 import com.example.ozhinshe.modiedata.MovieResponce
 import com.example.ozhinshe.modiedata.Movy
+import com.example.ozhinshe.modiedata.UqsasGenre
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -57,4 +58,14 @@ interface MainApi {
         @Path("id") id: Int?,
         @Header("Authorization") token: String,
     ): Movy
+    @GET("/core/V1/movies/page")
+    suspend fun uqsasMovies(
+        @Query("direction") direction: String,
+        @Query("genreId") genreId: Int?,
+        @Query("page") page: Int = 1,
+        @Query("size") size: Int = 10,
+        @Query("sortField") sortField: String = "createdDate",
+        @Header("accept") acceptHeader: String = "application/json",
+        @Header("Authorization") token: String
+    ): UqsasGenre
 }

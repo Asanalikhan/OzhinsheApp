@@ -8,9 +8,9 @@
     <color name="input">#1C2431</color>
     <color name="border">#374151</color>
     <color name="login">#B376F7</color>
+    <color name="season_bolim">#9753F0</color>
     <color name="button">#7E2DFC</color>
     <color name="button2">#5415C6</color>
     <color name="unselected">#6B7280</color>
     <color name="regiser">#4B5563</color>
-
 </resources>

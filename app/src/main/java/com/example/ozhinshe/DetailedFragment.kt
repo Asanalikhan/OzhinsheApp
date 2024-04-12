@@ -28,7 +28,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class DetailedFragment : Fragment(){
+class DetailedFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentDetailedBinding
     private lateinit var mainApi: MainApi
@@ -45,7 +45,6 @@ class DetailedFragment : Fragment(){
         binding = FragmentDetailedBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
-
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,7 +58,8 @@ class DetailedFragment : Fragment(){
         }
         val bundle = arguments
         val id = bundle?.getString("key")?.toInt()
-        adapter = UqsasAdapter()
+        adapter = UqsasAdapter(childFragmentManager)
+        adapter.setOnItemClickListener(this)
         adapter1 = ScreenshotAdapter()
         initRecyclerView(adapter, binding.rcView2)
         initRecyclerView(adapter1, binding.rcView)
@@ -100,5 +100,13 @@ class DetailedFragment : Fragment(){
         recyclerView.adapter = adapter
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
+    }
+
+    override fun onItemClick(id : Int) {
+        val bundle = Bundle()
+        bundle.putString("key", id.toString())
+        val detailedFragment = DetailedFragment()
+        detailedFragment.arguments = bundle
+        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
     }
 }

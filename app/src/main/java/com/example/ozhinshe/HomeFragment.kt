@@ -148,11 +148,15 @@ class HomeFragment : Fragment(), OnItemClickListener {
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
     }
-    override fun onItemClick(id : Int) {
+    override fun onItemClick(id: Int) {
         val bundle = Bundle()
         bundle.putString("key", id.toString())
         val detailedFragment = DetailedFragment()
         detailedFragment.arguments = bundle
         (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+    }
+
+    override fun onSeasonClick(id: Int) {
+        TODO("Not yet implemented")
     }
 }

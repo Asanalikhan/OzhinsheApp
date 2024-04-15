@@ -56,8 +56,14 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         binding.imageButton.setOnClickListener{
             (activity as? HomeActivity)?.replaceFragment(HomeFragment())
         }
+
         val bundle = arguments
         val id = bundle?.getString("key")?.toInt()
+
+        binding.moreBtn.setOnClickListener {
+            if (id != null) onSeasonClick(id)
+        }
+
         adapter = UqsasAdapter(childFragmentManager)
         adapter.setOnItemClickListener(this)
         adapter1 = ScreenshotAdapter()
@@ -102,11 +108,18 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         snapHelper.attachToRecyclerView(recyclerView)
     }
 
-    override fun onItemClick(id : Int) {
+    override fun onItemClick(id: Int) {
         val bundle = Bundle()
         bundle.putString("key", id.toString())
         val detailedFragment = DetailedFragment()
         detailedFragment.arguments = bundle
         (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+    }
+    override fun onSeasonClick(id: Int) {
+        val bundle = Bundle()
+        bundle.putString("key", id.toString())
+        val bolimFragment = BolimFragment()
+        bolimFragment.arguments = bundle
+        (activity as? HomeActivity)?.replaceFragment(bolimFragment)
     }
 }

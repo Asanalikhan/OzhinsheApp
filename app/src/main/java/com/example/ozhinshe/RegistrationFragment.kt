@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.ozhinshe.data.AuthRequest
 import com.example.ozhinshe.data.MainApi
-import com.example.ozhinshe.data.RegistrationRequest
+import com.example.ozhinshe.modiedata.RegistrationRequest
 import com.example.ozhinshe.databinding.FragmentRegistrationBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

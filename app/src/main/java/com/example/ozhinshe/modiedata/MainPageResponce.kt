@@ -1,3 +1,3 @@
-package com.example.ozhinshe.data
+package com.example.ozhinshe.modiedata
 
 class MainPageResponce : ArrayList<MainPageResponceItem>()

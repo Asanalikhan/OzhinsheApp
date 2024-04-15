@@ -1,4 +1,4 @@
-package com.example.ozhinshe.data
+package com.example.ozhinshe.modiedata
 
 data class RegistrationResponce(
     val accessToken: String,

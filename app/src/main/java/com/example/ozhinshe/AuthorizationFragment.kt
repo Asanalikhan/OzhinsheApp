@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.ozhinshe.data.AuthRequest
+import com.example.ozhinshe.modiedata.AuthRequest
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentAuthorizationBinding
 import kotlinx.coroutines.Dispatchers

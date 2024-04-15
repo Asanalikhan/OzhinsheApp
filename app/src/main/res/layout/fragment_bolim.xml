@@ -38,7 +38,8 @@
         <ListView
             android:id="@+id/seasons"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:ignore="NestedScrolling" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView"
             android:layout_width="wrap_content"

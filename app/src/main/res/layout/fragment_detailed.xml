@@ -188,6 +188,7 @@
                     android:textSize="14sp"
                     android:textColor="@color/undersalem"/>
                 <ImageButton
+                    android:id="@+id/moreBtn"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="-20dp"

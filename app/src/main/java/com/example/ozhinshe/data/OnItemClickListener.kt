@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.data
 
 interface OnItemClickListener {
     fun onItemClick(id: Int)

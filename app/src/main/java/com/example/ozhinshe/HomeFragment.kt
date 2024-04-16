@@ -24,6 +24,7 @@ import com.example.ozhinshe.adapters.TrendAdapter
 import com.example.ozhinshe.adapters.WatchedMovieAdapter
 import com.example.ozhinshe.adapters.ZhobalarAdapter
 import com.example.ozhinshe.data.MainApi
+import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentHomeBinding
 import com.example.ozhinshe.modiedata.CategoryAges
 import com.example.ozhinshe.modiedata.DescMovies

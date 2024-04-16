@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ozhinshe.HomeFragment
-import com.example.ozhinshe.OnItemClickListener
+import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.WatchedMovieBinding
 import com.example.ozhinshe.modiedata.Movy
 

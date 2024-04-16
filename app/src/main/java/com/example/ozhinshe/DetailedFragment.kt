@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.ozhinshe.adapters.ScreenshotAdapter
 import com.example.ozhinshe.adapters.UqsasAdapter
 import com.example.ozhinshe.data.MainApi
+import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentDetailedBinding
 import com.example.ozhinshe.modiedata.Movy
 import com.example.ozhinshe.modiedata.Screenshot
@@ -116,9 +117,11 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         (activity as? HomeActivity)?.replaceFragment(detailedFragment)
     }
     override fun onSeasonClick(id: Int) {
-        val bundle = Bundle()
-        bundle.putString("key", id.toString())
         val bolimFragment = BolimFragment()
+        val bundle = Bundle()
+        bundle.putInt("id", id)
+        bundle.putInt("seriesCount", responce.seriesCount)
+        bundle.putString("posterLink", responce.screenshots[0].link)
         bolimFragment.arguments = bundle
         (activity as? HomeActivity)?.replaceFragment(bolimFragment)
     }

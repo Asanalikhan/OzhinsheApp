@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "130121127908",
+    "project_id": "login-473ce",
+    "storage_bucket": "login-473ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130121127908:android:ab35f7aa786cef9c25d9f1",
+        "android_client_info": {
+          "package_name": "com.example.ozhinshe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_eSK5ZMw3PwvtUS26PD6XyBmX3GUU4BM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

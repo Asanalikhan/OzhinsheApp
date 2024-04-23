@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ozhinshe</string>
+    <string name="app_name">Ozinshe</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="otkizu">Өткізу</string>
     <string name="ozhinshe">ÖZINŞE-ге қош келдің</string>
@@ -40,4 +40,5 @@
     <string name="uqsas">Ұқсас телехикаялар</string>
     <string name="season">сезон</string>
     <string name="shi_bolim">- ші бөлім</string>
+    <string name="izdeu">Іздеу</string>
 </resources>

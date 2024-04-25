@@ -41,4 +41,12 @@
     <string name="season">сезон</string>
     <string name="shi_bolim">- ші бөлім</string>
     <string name="izdeu">Іздеу</string>
+    <string name="sanattar">Санаттар</string>
+    <string name="seatcom">Ситком</string>
+    <string name="korkem">Көркем фильм</string>
+    <string name="multfilm">Мультфильм</string>
+    <string name="multserial">Мультсериал</string>
+    <string name="anime">Аниме</string>
+    <string name="tv_and_show">Тв-бағдарлама және реалити-шоу</string>
+    <string name="music">Музыка</string>
 </resources>

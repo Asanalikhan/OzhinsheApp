@@ -13,4 +13,6 @@
     <color name="button2">#5415C6</color>
     <color name="unselected">#6B7280</color>
     <color name="regiser">#4B5563</color>
+    <color name="search_text">#F9FAFB</color>
+
 </resources>

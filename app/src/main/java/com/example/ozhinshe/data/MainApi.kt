@@ -84,4 +84,9 @@ interface MainApi {
         @Path("movieId") id: Int?,
         @Header("Authorization") token: String,
     ): SeasonResponse
+    @GET("core/v1/movies/search")
+    suspend fun search(
+        @Query("search") search: String,
+        @Header("Authorization") token: String,
+    ): SeasonResponse
 }

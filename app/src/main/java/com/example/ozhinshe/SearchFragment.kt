@@ -51,6 +51,40 @@ class SearchFragment : Fragment() {
         val details = "{}"
         val principal = "{}"
 
+        binding.apply {
+            val textViewIds = arrayOf(telehikaya, seatcom, korkem, multfilm, multserial, anime, tvAndShow, derekti, music, shetel)
+            for (textView in textViewIds) {
+                var query = ""
+                textView.setOnClickListener {
+                    when (textView) {
+                        telehikaya -> query = getString(R.string.telehikaya)
+                        seatcom -> query = getString(R.string.seatcom)
+                        korkem -> query = getString(R.string.korkem)
+                        multfilm -> query = getString(R.string.multfilm)
+                        multserial -> query = getString(R.string.multserial)
+                        anime -> query = getString(R.string.anime)
+                        tvAndShow -> query = getString(R.string.tv_and_show)
+                        derekti -> query = getString(R.string.derekti)
+                        music -> query = getString(R.string.music)
+                        shetel -> query = getString(R.string.shetel)
+                    }
+                    binding.sanatIzdeu.text = "Іздеу нәтижелері"
+                    binding.rcView.visibility = View.VISIBLE
+                    binding.relativeLayout.visibility = View.GONE
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        try {
+                            val response = mainApi.search(query, credentials, details, principal, "Bearer $token")
+                            lifecycleScope.launch(Dispatchers.Main) {
+                                adapter.submitList(response)
+                            }
+                        } catch (e: Exception) {
+                            Log.e(TAG, "Error fetching search results: ${e.message}", e)
+                        }
+                    }
+                }
+            }
+        }
+
         binding.searchBtnIcon.setOnClickListener {
             val query = binding.searchBtnText.editText?.text.toString().trim()
             binding.sanatIzdeu.text = "Іздеу нәтижелері"
@@ -67,7 +101,6 @@ class SearchFragment : Fragment() {
                 }
             }
         }
-
     }
     fun initRetrofit(){
         val interceptor = HttpLoggingInterceptor()

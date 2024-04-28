@@ -38,6 +38,7 @@
         android:background="@color/input" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchBtn_text"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -50,7 +51,7 @@
         app:endIconDrawable="@drawable/union"
         app:endIconMode="clear_text">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/searchBtn_text"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/izdeu"
@@ -217,5 +218,11 @@
             android:textColor="@color/search_text"
             android:textSize="14sp" />
     </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcView"
+        android:visibility="gone"
+        android:layout_marginHorizontal="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

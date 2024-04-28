@@ -10,7 +10,7 @@ import com.example.ozhinshe.modiedata.Movy
 import com.example.ozhinshe.modiedata.RegistrationRequest
 import com.example.ozhinshe.modiedata.RegistrationResponce
 import com.example.ozhinshe.modiedata.Screenshot
-import com.example.ozhinshe.modiedata.SeasonResponse
+import com.example.ozhinshe.modiedata.SearchResponce
 import com.example.ozhinshe.modiedata.UqsasGenre
 import retrofit2.Response
 import retrofit2.http.Body
@@ -79,14 +79,12 @@ interface MainApi {
         @Path("movieId") id: Int?,
         @Header("Authorization") token: String,
     ):List<Screenshot>
-    @GET("core/v1/seasons/{movieId}")
-    suspend fun getListSeasons(
-        @Path("movieId") id: Int?,
-        @Header("Authorization") token: String,
-    ): SeasonResponse
-    @GET("core/v1/movies/search")
+    @GET("core/V1/movies/search")
     suspend fun search(
         @Query("search") search: String,
+        @Query("credentials") credentials: String,
+        @Query("details") details: String,
+        @Query("principal") principal: String,
         @Header("Authorization") token: String,
-    ): SeasonResponse
+    ): SearchResponce
 }

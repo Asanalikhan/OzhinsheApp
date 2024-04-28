@@ -1,13 +1,24 @@
 package com.example.ozhinshe
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
+import com.example.ozhinshe.adapters.SearchAdapter
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentSearchBinding
+import com.example.ozhinshe.modiedata.SearchResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -17,6 +28,8 @@ class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private lateinit var mainApi: MainApi
+    private lateinit var adapter: SearchAdapter
+    private lateinit var response: SearchResponse
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,9 +43,30 @@ class SearchFragment : Fragment() {
 
         initRetrofit()
         var token = getToken()
+        adapter = SearchAdapter()
+        initRecyclerView(adapter, binding.rcView)
+        val query = binding.searchBtnText.editText?.text.toString().trim()
 
+        val credentials = "{}"
+        val details = "{}"
+        val principal = "{}"
 
+        binding.searchBtnIcon.setOnClickListener {
+            binding.sanatIzdeu.text = "Іздеу нәтижелері"
+            binding.rcView.visibility = View.VISIBLE
+            binding.relativeLayout.visibility = View.GONE
 
+            lifecycleScope.launch(Dispatchers.IO) {
+                try {
+                    val response = mainApi.search(query, credentials, details, principal, "Bearer $token")
+                    lifecycleScope.launch(Dispatchers.Main) {
+                        adapter.submitList(response)
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error fetching search results: ${e.message}", e)
+                }
+            }
+        }
 
     }
     fun initRetrofit(){
@@ -48,5 +82,10 @@ class SearchFragment : Fragment() {
         val token = sharedPreferences.getString("token_key", null)
         return token.toString()
     }
+    private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = adapter
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(recyclerView)
+    }
 }
-

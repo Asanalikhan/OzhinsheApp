@@ -20,7 +20,7 @@ class SearchAdapter(): RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
             val into = Glide.with(binding.root).load(item.poster.link)
                 .into(binding.srcMovieImage)
             binding.srMovieName.text = item.name
-            binding.srMovieDesc.text = "" + item.year + "." + item.movieType + "."  + item.categories.first()
+            binding.srMovieDesc.text = "" + item.year + "." + item.movieType + "."  + item.categories[0].name
             if (position == adapterList.size - 1) {
                 separator.visibility = View.GONE
             } else {

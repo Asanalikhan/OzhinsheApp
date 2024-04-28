@@ -45,17 +45,17 @@ class SearchFragment : Fragment() {
         var token = getToken()
         adapter = SearchAdapter()
         initRecyclerView(adapter, binding.rcView)
-        val query = binding.searchBtnText.editText?.text.toString().trim()
+
 
         val credentials = "{}"
         val details = "{}"
         val principal = "{}"
 
         binding.searchBtnIcon.setOnClickListener {
+            val query = binding.searchBtnText.editText?.text.toString().trim()
             binding.sanatIzdeu.text = "Іздеу нәтижелері"
             binding.rcView.visibility = View.VISIBLE
             binding.relativeLayout.visibility = View.GONE
-
             lifecycleScope.launch(Dispatchers.IO) {
                 try {
                     val response = mainApi.search(query, credentials, details, principal, "Bearer $token")

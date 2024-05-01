@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.ozhinshe.adapters.SearchAdapter
 import com.example.ozhinshe.data.MainApi
+import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentSearchBinding
 import com.example.ozhinshe.modiedata.SearchResponse
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +26,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentSearchBinding
     private lateinit var mainApi: MainApi
@@ -43,7 +45,7 @@ class SearchFragment : Fragment() {
 
         initRetrofit()
         var token = getToken()
-        adapter = SearchAdapter()
+        initRecyclerViewAdapters()
         initRecyclerView(adapter, binding.rcView)
 
         val credentials = "{}"
@@ -62,9 +64,9 @@ class SearchFragment : Fragment() {
                 }
             }
         }
-
         binding.searchBtnIcon.setOnClickListener {
             clicked = true
+            hideKeyboard(it)
             val query = binding.searchBtnText.editText?.text.toString().trim()
             binding.sanatIzdeu.text = "Іздеу нәтижелері"
             binding.rcView.visibility = View.VISIBLE
@@ -111,5 +113,23 @@ class SearchFragment : Fragment() {
         recyclerView.adapter = adapter
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
+    }
+    private fun initRecyclerViewAdapters() {
+        adapter = SearchAdapter()
+        adapter.setOnItemClickListener1(this)
+    }
+    override fun onItemClick(id: Int) {
+        val bundle = Bundle()
+        bundle.putString("key", id.toString())
+        val detailedFragment = DetailedFragment()
+        detailedFragment.arguments = bundle
+        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+    }
+    fun hideKeyboard(view: View) {
+        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+    override fun onSeasonClick(id: Int) {
+        TODO("Not yet implemented")
     }
 }

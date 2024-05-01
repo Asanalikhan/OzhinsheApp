@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.ozhinshe.SanattarFragment
+import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.SearchCardBinding
 import com.example.ozhinshe.modiedata.ContentX
 
 class BarlygyAdapter(): RecyclerView.Adapter<BarlygyAdapter.BarlygyViewHolder>() {
 
     private val adapterList = mutableListOf<ContentX>()
+    private var itemClickListener: OnItemClickListener? = null
     inner class BarlygyViewHolder(private val binding: SearchCardBinding): RecyclerView.ViewHolder(binding.root){
         val separator: View = binding.separator
         @SuppressLint("SetTextI18n")
@@ -25,7 +28,13 @@ class BarlygyAdapter(): RecyclerView.Adapter<BarlygyAdapter.BarlygyViewHolder>()
             } else {
                 separator.visibility = View.VISIBLE
             }
+            binding.root.setOnClickListener {
+                itemClickListener?.onItemClick(item.id)
+            }
         }
+    }
+    fun setOnItemClickListener(listener: SanattarFragment) {
+        this.itemClickListener = listener
     }
     fun submitList(list: List<ContentX>) {
         adapterList.clear()

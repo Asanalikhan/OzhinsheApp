@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.ozhinshe.modiedata.AuthRequest
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentAuthorizationBinding
+import com.example.ozhinshe.modiedata.AuthRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -45,6 +46,7 @@ class AuthorizationFragment: Fragment(){
         val inputPassworld = binding.textInputLayout2
 
         binding.btnAuthorization.setOnClickListener {
+            hideKeyboard(it)
             val email = inputEmail.editText?.text.toString().trim()
             val password = inputPassworld.editText?.text.toString().trim()
             var access = false
@@ -109,5 +111,9 @@ class AuthorizationFragment: Fragment(){
                 editor.apply()
             }
         }
+    }
+    fun hideKeyboard(view: View) {
+        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

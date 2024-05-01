@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.ozhinshe.SanattarFragment
+import com.example.ozhinshe.SearchFragment
+import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.SearchCardBinding
 import com.example.ozhinshe.modiedata.SearchResponce
 import com.example.ozhinshe.modiedata.SearchResponse
@@ -13,6 +16,7 @@ import com.example.ozhinshe.modiedata.SearchResponse
 class SearchAdapter(): RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     private val adapterList = mutableListOf<SearchResponse>()
+    private var itemClickListener: OnItemClickListener? = null
     inner class SearchViewHolder(private val binding: SearchCardBinding): RecyclerView.ViewHolder(binding.root){
         val separator: View = binding.separator
         @SuppressLint("SetTextI18n")
@@ -26,7 +30,16 @@ class SearchAdapter(): RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
             } else {
                 separator.visibility = View.VISIBLE
             }
+            binding.root.setOnClickListener {
+                itemClickListener?.onItemClick(item.id)
+            }
         }
+    }
+    fun setOnItemClickListener(listener: SanattarFragment) {
+        this.itemClickListener = listener
+    }
+    fun setOnItemClickListener1(listener: SearchFragment) {
+        this.itemClickListener = listener
     }
     fun submitList(list: SearchResponce) {
         adapterList.clear()

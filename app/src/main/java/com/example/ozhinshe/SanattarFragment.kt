@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.SnapHelper
 import com.example.ozhinshe.adapters.BarlygyAdapter
 import com.example.ozhinshe.adapters.SearchAdapter
 import com.example.ozhinshe.data.MainApi
+import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentSanattarBinding
 import com.example.ozhinshe.modiedata.SearchResponse
 import kotlinx.coroutines.Dispatchers
@@ -25,13 +26,14 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class SanattarFragment : Fragment() {
+class SanattarFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentSanattarBinding
     private lateinit var mainApi: MainApi
     private lateinit var adapter: SearchAdapter
     private lateinit var response: SearchResponse
     private lateinit var adapter1: BarlygyAdapter
+    private var itemClickListener: OnItemClickListener? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,8 +47,7 @@ class SanattarFragment : Fragment() {
 
         initRetrofit()
         val token = getToken()
-        adapter = SearchAdapter()
-        adapter1 = BarlygyAdapter()
+        initRecyclerViewAdapters()
         initRecyclerView(adapter, binding.rcView)
         initRecyclerView(adapter1, binding.rcView1)
 
@@ -102,5 +103,20 @@ class SanattarFragment : Fragment() {
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
     }
-
+    override fun onItemClick(id: Int) {
+        val bundle = Bundle()
+        bundle.putString("key", id.toString())
+        val detailedFragment = DetailedFragment()
+        detailedFragment.arguments = bundle
+        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+    }
+    override fun onSeasonClick(id: Int) {
+        TODO("not implemented")
+    }
+    private fun initRecyclerViewAdapters() {
+        adapter = SearchAdapter()
+        adapter1 = BarlygyAdapter()
+        adapter.setOnItemClickListener(this)
+        adapter1.setOnItemClickListener(this)
+    }
 }

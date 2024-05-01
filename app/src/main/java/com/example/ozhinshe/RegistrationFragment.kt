@@ -1,15 +1,17 @@
 package com.example.ozhinshe
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.ozhinshe.data.MainApi
-import com.example.ozhinshe.modiedata.RegistrationRequest
 import com.example.ozhinshe.databinding.FragmentRegistrationBinding
+import com.example.ozhinshe.modiedata.RegistrationRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -44,6 +46,7 @@ class RegistrationFragment : Fragment() {
         val inputLayoutPassword = binding.textInputLayout2
         val inputLayoutPassword2 = binding.textInputLayout3
         binding.btnRegistration.setOnClickListener {
+            hideKeyboard(it)
             val email = inputLayoutEmail.editText?.text.toString().trim()
             val password = inputLayoutPassword.editText?.text.toString().trim()
             val password2 = inputLayoutPassword2.editText?.text.toString().trim()
@@ -113,5 +116,9 @@ class RegistrationFragment : Fragment() {
                 binding.tvUnderSalemText.text = user?.email
             }
         }
+    }
+    fun hideKeyboard(view: View) {
+        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

@@ -1,6 +1,6 @@
 package com.example.ozhinshe
 
-import android.content.ContentValues.TAG
+import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.ozhinshe.adapters.SearchAdapter
 import com.example.ozhinshe.data.MainApi
-import com.example.ozhinshe.databinding.FragmentSearchBinding
+import com.example.ozhinshe.databinding.FragmentSanattarBinding
 import com.example.ozhinshe.modiedata.SearchResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,17 +24,17 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class SearchFragment : Fragment() {
+class SanattarFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchBinding
+    private lateinit var binding: FragmentSanattarBinding
     private lateinit var mainApi: MainApi
     private lateinit var adapter: SearchAdapter
     private lateinit var response: SearchResponse
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
+    ): View? {
+        binding = FragmentSanattarBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -42,52 +42,30 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRetrofit()
-        var token = getToken()
+        val token = getToken()
         adapter = SearchAdapter()
         initRecyclerView(adapter, binding.rcView)
 
         val credentials = "{}"
         val details = "{}"
         val principal = "{}"
-        var clicked = false
+        val query: String? = arguments?.getString("string")
 
-
-        binding.apply {
-            val textViewIds = arrayOf(telehikaya, seatcom, korkem, multfilm, multserial, anime, tvAndShow, derekti, music, shetel)
-            for (textView in textViewIds) {
-                textView.setOnClickListener {
-                    val sanattarFragment = SanattarFragment().apply {
-                        arguments = Bundle().apply { putString("string", textView.text.toString()) }
-                    }
-                    (activity as? HomeActivity)?.replaceFragment(sanattarFragment)
-                }
-            }
-        }
-
-        binding.searchBtnIcon.setOnClickListener {
-            clicked = true
-            val query = binding.searchBtnText.editText?.text.toString().trim()
-            binding.sanatIzdeu.text = "Іздеу нәтижелері"
-            binding.rcView.visibility = View.VISIBLE
-            binding.relativeLayout.visibility = View.GONE
+        query?.let {
+            binding.cvMovieName.text = it
             lifecycleScope.launch(Dispatchers.IO) {
                 try {
-                    val response = mainApi.search(query, credentials, details, principal, "Bearer $token")
+                    val response = mainApi.search(it, credentials, details, principal, "Bearer $token")
                     lifecycleScope.launch(Dispatchers.Main) {
                         adapter.submitList(response)
                     }
                 } catch (e: Exception) {
-                    Log.e(TAG, "Error fetching search results: ${e.message}", e)
+                    Log.e(ContentValues.TAG, "Error fetching search results: ${e.message}", e)
                 }
             }
         }
         binding.imageButton.setOnClickListener {
-            if(clicked){
-                binding.sanatIzdeu.text = "Санаттар"
-                binding.rcView.visibility = View.GONE
-                binding.relativeLayout.visibility = View.VISIBLE
-                clicked = false
-            }
+            (activity as? HomeActivity)?.replaceFragment(SearchFragment())
         }
     }
     fun initRetrofit(){
@@ -95,7 +73,8 @@ class SearchFragment : Fragment() {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
         val BASE_URL = "http://api.ozinshe.com"
-        val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).client(client).addConverterFactory(GsonConverterFactory.create()).build()
+        val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).client(client).addConverterFactory(
+            GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
     fun getToken(): String{

@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.sign
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.example.ozhinshe.R
 import com.example.ozhinshe.adapters.ViewPagerAdapter
 import com.example.ozhinshe.databinding.FragmentOnBoardBinding
 
@@ -15,7 +16,11 @@ class OnBoardFragment : Fragment() {
     private lateinit var binding: FragmentOnBoardBinding
     private var titleList = mutableListOf<String>("Фильмдер, телехикаялар, ситкомдар, анимациялық жобалар, телебағдарламалар мен реалити-шоулар, аниме және тағы басқалары", "Кез келген құрылғыдан қара \n" +
             "Сүйікті фильміңді  қосымша төлемсіз телефоннан, планшеттен, ноутбуктан қара", "Тіркелу оңай. Қазір тіркел де қалаған фильміңе қол жеткіз")
-    private var imageList = mutableListOf<Int>(R.drawable.onboarding, R.drawable.onboarding2, R.drawable.onboarding3)
+    private var imageList = mutableListOf<Int>(
+        R.drawable.onboarding,
+        R.drawable.onboarding2,
+        R.drawable.onboarding3
+    )
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

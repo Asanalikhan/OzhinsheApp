@@ -19,11 +19,11 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".sign.SplashScreen"
             android:exported="false"
             android:label="SplashScreen" />
         <activity
-            android:name=".MainActivity"
+            android:name=".sign.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

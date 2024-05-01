@@ -74,7 +74,6 @@ class DetailedFragment : Fragment(), OnItemClickListener {
             }
         }
 
-
         adapter = UqsasAdapter(childFragmentManager)
         adapter.setOnItemClickListener(this)
         adapter1 = ScreenshotAdapter()

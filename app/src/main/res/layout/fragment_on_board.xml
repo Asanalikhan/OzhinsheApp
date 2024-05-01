@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fadingEdge="vertical"
     android:background="#111827"
-    tools:context=".OnBoardFragment">
+    tools:context=".sign.OnBoardFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager2"

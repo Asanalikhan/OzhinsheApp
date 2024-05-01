@@ -1,4 +1,4 @@
-package com.example.ozhinshe
+package com.example.ozhinshe.sign
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.ozhinshe.R
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentRegistrationBinding
 import com.example.ozhinshe.modiedata.RegistrationRequest

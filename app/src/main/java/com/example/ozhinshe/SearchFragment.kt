@@ -51,7 +51,6 @@ class SearchFragment : Fragment() {
         val principal = "{}"
         var clicked = false
 
-
         binding.apply {
             val textViewIds = arrayOf(telehikaya, seatcom, korkem, multfilm, multserial, anime, tvAndShow, derekti, music, shetel)
             for (textView in textViewIds) {
@@ -81,12 +80,16 @@ class SearchFragment : Fragment() {
                 }
             }
         }
-        binding.imageButton.setOnClickListener {
-            if(clicked){
-                binding.sanatIzdeu.text = "Санаттар"
-                binding.rcView.visibility = View.GONE
-                binding.relativeLayout.visibility = View.VISIBLE
-                clicked = false
+        binding.apply {
+            imageButton.setOnClickListener {
+                if(clicked){
+                    sanatIzdeu.text = "Санаттар"
+                    rcView.visibility = View.GONE
+                    relativeLayout.visibility = View.VISIBLE
+                    searchBtnText.editText?.setText("")
+                    searchBtnText.clearFocus()
+                    clicked = false
+                }
             }
         }
     }

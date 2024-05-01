@@ -54,16 +54,26 @@ class DetailedFragment : Fragment(), OnItemClickListener {
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)
-        binding.imageButton.setOnClickListener{
-            (activity as? HomeActivity)?.replaceFragment(HomeFragment())
-        }
 
         val bundle = arguments
         val id = bundle?.getString("key")?.toInt()
 
-        binding.moreBtn.setOnClickListener {
-            if (id != null) onSeasonClick(id)
+        binding.apply {
+            moreBtn.setOnClickListener {
+                if (id != null) onSeasonClick(id)
+            }
+            imageButton.setOnClickListener{
+                (activity as? HomeActivity)?.replaceFragment(HomeFragment())
+            }
+            barlygy.setOnClickListener {
+                val sanattarFragment = SanattarFragment().apply {
+                    arguments = Bundle().apply { putString("string", "Ұқсас телехикаялар")
+                    putBoolean("string1", true)}
+                }
+                (activity as? HomeActivity)?.replaceFragment(sanattarFragment)
+            }
         }
+
 
         adapter = UqsasAdapter(childFragmentManager)
         adapter.setOnItemClickListener(this)

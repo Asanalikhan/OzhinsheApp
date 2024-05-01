@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import com.example.ozhinshe.adapters.BarlygyAdapter
 import com.example.ozhinshe.adapters.SearchAdapter
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.databinding.FragmentSanattarBinding
@@ -30,6 +31,7 @@ class SanattarFragment : Fragment() {
     private lateinit var mainApi: MainApi
     private lateinit var adapter: SearchAdapter
     private lateinit var response: SearchResponse
+    private lateinit var adapter1: BarlygyAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,21 +46,33 @@ class SanattarFragment : Fragment() {
         initRetrofit()
         val token = getToken()
         adapter = SearchAdapter()
+        adapter1 = BarlygyAdapter()
         initRecyclerView(adapter, binding.rcView)
+        initRecyclerView(adapter1, binding.rcView1)
 
         val credentials = "{}"
         val details = "{}"
         val principal = "{}"
         val query: String? = arguments?.getString("string")
+        val forWhat: Boolean? = arguments?.getBoolean("string1")
 
         query?.let {
             binding.cvMovieName.text = it
             lifecycleScope.launch(Dispatchers.IO) {
                 try {
-                    val response = mainApi.search(it, credentials, details, principal, "Bearer $token")
-                    lifecycleScope.launch(Dispatchers.Main) {
-                        adapter.submitList(response)
+                    if(forWhat == true){
+                        val responce1 = mainApi.uqsasMovies(direction = "DESC", genreId = id, token = "Bearer $token")
+                        lifecycleScope.launch(Dispatchers.Main) {
+                            adapter1.submitList(responce1.content)
+                        }
                     }
+                    else{
+                        val response = mainApi.search(it, credentials, details, principal, "Bearer $token")
+                        lifecycleScope.launch(Dispatchers.Main) {
+                            adapter.submitList(response)
+                        }
+                    }
+
                 } catch (e: Exception) {
                     Log.e(ContentValues.TAG, "Error fetching search results: ${e.message}", e)
                 }
@@ -88,4 +102,5 @@ class SanattarFragment : Fragment() {
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
     }
+
 }

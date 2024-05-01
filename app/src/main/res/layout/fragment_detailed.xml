@@ -223,6 +223,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:layout_gravity="start"/>
                 <TextView
+                    android:id="@+id/barlygy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/all"

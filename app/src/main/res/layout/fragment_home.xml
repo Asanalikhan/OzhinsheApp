@@ -66,6 +66,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:layout_gravity="start"/>
             <TextView
+                android:id="@+id/barlygy1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/all"
@@ -93,14 +94,17 @@
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
                 android:layout_gravity="start"/>
+
             <TextView
+
+                android:id="@+id/barlygy2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all"
-                android:textSize="14sp"
-                android:textColor="@color/login"
+                android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
-                android:layout_gravity="end"/>
+                android:text="@string/all"
+                android:textColor="@color/login"
+                android:textSize="14sp" />
         </FrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView3"
@@ -137,14 +141,16 @@
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
                 android:layout_gravity="start"/>
+
             <TextView
+                android:id="@+id/barlygy3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all"
-                android:textSize="14sp"
-                android:textColor="@color/login"
+                android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
-                android:layout_gravity="end"/>
+                android:text="@string/all"
+                android:textColor="@color/login"
+                android:textSize="14sp" />
         </FrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView5"
@@ -165,14 +171,16 @@
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
                 android:layout_gravity="start"/>
+
             <TextView
+                android:id="@+id/barlygy4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all"
-                android:textSize="14sp"
-                android:textColor="@color/login"
+                android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
-                android:layout_gravity="end"/>
+                android:text="@string/all"
+                android:textColor="@color/login"
+                android:textSize="14sp" />
         </FrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView6"
@@ -193,14 +201,16 @@
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
                 android:layout_gravity="start"/>
+
             <TextView
+                android:id="@+id/barlygy5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all"
-                android:textSize="14sp"
-                android:textColor="@color/login"
+                android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
-                android:layout_gravity="end"/>
+                android:text="@string/all"
+                android:textColor="@color/login"
+                android:textSize="14sp" />
         </FrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView7"
@@ -236,14 +246,16 @@
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
                 android:layout_gravity="start"/>
+
             <TextView
+                android:id="@+id/barlygy6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all"
-                android:textSize="14sp"
-                android:textColor="@color/login"
+                android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
-                android:layout_gravity="end"/>
+                android:text="@string/all"
+                android:textColor="@color/login"
+                android:textSize="14sp" />
         </FrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView9"
@@ -264,14 +276,16 @@
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
                 android:layout_gravity="start"/>
+
             <TextView
+                android:id="@+id/barlygy7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all"
-                android:textSize="14sp"
-                android:textColor="@color/login"
+                android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
-                android:layout_gravity="end"/>
+                android:text="@string/all"
+                android:textColor="@color/login"
+                android:textSize="14sp" />
         </FrameLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView10"

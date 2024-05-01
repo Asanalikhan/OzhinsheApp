@@ -74,7 +74,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
                 val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
                 val responce1: GenresResponce = mainApi.getGenres(token = "Bearer $token")
                 val responce2: DescMovies = mainApi.descMovies(token = "Bearer $token")
-                val responce3: DescMovies = mainApi.genreMovies(direction = "DESC", genreId = 31, token = "Bearer $token")
+                val responce3: DescMovies =mainApi.genreMovies(direction = "DESC", genreId = 31, token = "Bearer $token")
                 val responce4: DescMovies = mainApi.genreMovies(direction = "ASC", genreId = 5, token = "Bearer $token")
                 val responce5: CategoryAges = mainApi.getCategoryAges(token = "Bearer $token")
                 adapter.submitList(response[1].movies)
@@ -91,6 +91,15 @@ class HomeFragment : Fragment(), OnItemClickListener {
             } catch (e: Exception) {
                 Log.e("HomeFragment2", "Exception: ${e.message}")
             }
+        }
+        binding.apply {
+            barlygy1.setOnClickListener { toSanat(1)}
+            barlygy2.setOnClickListener { toSanat(2)}
+            barlygy3.setOnClickListener { toSanat(3)}
+            barlygy4.setOnClickListener { toSanat(4)}
+            barlygy5.setOnClickListener { toSanat(5)}
+            barlygy6.setOnClickListener { toSanat(6)}
+            barlygy7.setOnClickListener { toSanat(7)}
         }
     }
 
@@ -156,7 +165,12 @@ class HomeFragment : Fragment(), OnItemClickListener {
         detailedFragment.arguments = bundle
         (activity as? HomeActivity)?.replaceFragment(detailedFragment)
     }
-
+    fun toSanat(int : Int){
+        val sanattarFragment = SanattarFragment().apply {
+            arguments = Bundle().apply { putInt("int", int) }
+        }
+        (activity as? HomeActivity)?.replaceFragment(sanattarFragment)
+    }
     override fun onSeasonClick(id: Int) {
         TODO("Not yet implemented")
     }

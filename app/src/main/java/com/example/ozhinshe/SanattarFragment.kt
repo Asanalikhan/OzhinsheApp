@@ -14,11 +14,19 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.ozhinshe.adapters.BarlygyAdapter
+import com.example.ozhinshe.adapters.Derekti2Adapter
+import com.example.ozhinshe.adapters.ItsForYouAdapter
+import com.example.ozhinshe.adapters.RealityShowAdapter
 import com.example.ozhinshe.adapters.SearchAdapter
+import com.example.ozhinshe.adapters.Shetel2Adapter
+import com.example.ozhinshe.adapters.Telehikaya2Adapter
+import com.example.ozhinshe.adapters.TrendtegiAdapter
+import com.example.ozhinshe.adapters.ZhanaZobaAdapter
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentSanattarBinding
-import com.example.ozhinshe.modiedata.SearchResponse
+import com.example.ozhinshe.modiedata.DescMovies
+import com.example.ozhinshe.modiedata.MovieResponce
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -31,9 +39,15 @@ class SanattarFragment : Fragment(), OnItemClickListener {
     private lateinit var binding: FragmentSanattarBinding
     private lateinit var mainApi: MainApi
     private lateinit var adapter: SearchAdapter
-    private lateinit var response: SearchResponse
     private lateinit var adapter1: BarlygyAdapter
-    private var itemClickListener: OnItemClickListener? = null
+    private lateinit var adapter2: TrendtegiAdapter
+    private lateinit var adapter3: ItsForYouAdapter
+    private lateinit var adapter4: ZhanaZobaAdapter
+    private lateinit var adapter5: RealityShowAdapter
+    private lateinit var adapter6: Telehikaya2Adapter
+    private lateinit var adapter7: Derekti2Adapter
+    private lateinit var adapter8: Shetel2Adapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,14 +62,15 @@ class SanattarFragment : Fragment(), OnItemClickListener {
         initRetrofit()
         val token = getToken()
         initRecyclerViewAdapters()
-        initRecyclerView(adapter, binding.rcView)
-        initRecyclerView(adapter1, binding.rcView1)
+
 
         val credentials = "{}"
         val details = "{}"
         val principal = "{}"
+
         val query: String? = arguments?.getString("string")
         val forWhat: Boolean? = arguments?.getBoolean("string1")
+        val int: Int? = arguments?.getInt("int")
 
         query?.let {
             binding.cvMovieName.text = it
@@ -79,6 +94,46 @@ class SanattarFragment : Fragment(), OnItemClickListener {
                 }
             }
         }
+        lifecycleScope.launch(Dispatchers.IO) {
+            val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
+            val responce2: DescMovies = mainApi.descMovies(token = "Bearer $token")
+            val responce3: DescMovies =mainApi.genreMovies(direction = "DESC", genreId = 31, token = "Bearer $token")
+            val responce4: DescMovies = mainApi.genreMovies(direction = "ASC", genreId = 5, token = "Bearer $token")
+            lifecycleScope.launch(Dispatchers.Main) {
+                when(int){
+                    1 -> {
+                        adapter2.submitList(response[0].movies)
+                        binding.cvMovieName.text = "Трендтегілер"
+                    }
+                    2 -> {
+                        adapter3.submitList(response[1].movies)
+                        binding.cvMovieName.text = "Сізге арналған фильмдер"
+                    }
+                    3 -> {
+                        adapter4.submitList(responce2.content)
+                        binding.cvMovieName.text = "Жаңа жобалар"
+                    }
+                    4 -> {
+                        adapter5.submitList(responce3.content)
+                        binding.cvMovieName.text = "Тв-бағдарлама және реалити-шоу"
+                    }
+                    5 -> {
+                        adapter6.submitList(responce4.content)
+                        binding.cvMovieName.text = "Телехикая"
+                    }
+                    6 -> {
+                        adapter7.submitList(response[3].movies)
+                        binding.cvMovieName.text = "Деректі фильм"
+                    }
+                    7 -> {
+                        adapter8.submitList(response[4].movies)
+                        binding.cvMovieName.text = "Шетел фильмдері"
+                    }
+                }
+            }
+        }
+
+
         binding.imageButton.setOnClickListener {
             (activity as? HomeActivity)?.replaceFragment(SearchFragment())
         }
@@ -117,6 +172,22 @@ class SanattarFragment : Fragment(), OnItemClickListener {
         adapter = SearchAdapter()
         adapter1 = BarlygyAdapter()
         adapter.setOnItemClickListener(this)
+        initRecyclerView(adapter, binding.rcView)
         adapter1.setOnItemClickListener(this)
+        initRecyclerView(adapter1, binding.rcView1)
+        adapter2 = TrendtegiAdapter()
+        initRecyclerView(adapter2, binding.rcView2)
+        adapter3 = ItsForYouAdapter()
+        initRecyclerView(adapter3, binding.rcView3)
+        adapter4 = ZhanaZobaAdapter()
+        initRecyclerView(adapter4, binding.rcView4)
+        adapter5 = RealityShowAdapter()
+        initRecyclerView(adapter5, binding.rcView5)
+        adapter6 = Telehikaya2Adapter()
+        initRecyclerView(adapter6, binding.rcView6)
+        adapter7 = Derekti2Adapter()
+        initRecyclerView(adapter7, binding.rcView7)
+        adapter8 = Shetel2Adapter()
+        initRecyclerView(adapter8, binding.rcView8)
     }
 }

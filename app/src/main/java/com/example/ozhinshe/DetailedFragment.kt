@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 import com.example.ozhinshe.adapters.ScreenshotAdapter
 import com.example.ozhinshe.adapters.UqsasAdapter
+import com.example.ozhinshe.data.Item
 import com.example.ozhinshe.data.MainApi
+import com.example.ozhinshe.data.MainDB
 import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentDetailedBinding
 import com.example.ozhinshe.modiedata.Movy
@@ -46,7 +48,7 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         binding = FragmentDetailedBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -57,6 +59,7 @@ class DetailedFragment : Fragment(), OnItemClickListener {
 
         val bundle = arguments
         val id = bundle?.getString("key")?.toInt()
+        val db = MainDB.getDb(requireContext())
 
         binding.apply {
             moreBtn.setOnClickListener {
@@ -71,6 +74,13 @@ class DetailedFragment : Fragment(), OnItemClickListener {
                     putBoolean("string1", true)}
                 }
                 (activity as? HomeActivity)?.replaceFragment(sanattarFragment)
+            }
+            imageButton2.setOnClickListener {// while onclick fun will add item to db by its id, it would to refactor
+                imageButton2.background.setTint(R.color.button2)
+                val item = Item(null, id!!)
+                Thread{
+                    db.getDao().insertItem(item)
+                }.start()
             }
         }
 

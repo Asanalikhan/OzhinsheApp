@@ -63,7 +63,6 @@ class SanattarFragment : Fragment(), OnItemClickListener {
         val token = getToken()
         initRecyclerViewAdapters()
 
-
         val credentials = "{}"
         val details = "{}"
         val principal = "{}"
@@ -176,18 +175,25 @@ class SanattarFragment : Fragment(), OnItemClickListener {
         adapter1.setOnItemClickListener(this)
         initRecyclerView(adapter1, binding.rcView1)
         adapter2 = TrendtegiAdapter()
+        adapter2.setOnItemClickListener(this)
         initRecyclerView(adapter2, binding.rcView2)
         adapter3 = ItsForYouAdapter()
+        adapter3.setOnItemClickListener(this)
         initRecyclerView(adapter3, binding.rcView3)
         adapter4 = ZhanaZobaAdapter()
+        adapter4.setOnItemClickListener(this)
         initRecyclerView(adapter4, binding.rcView4)
         adapter5 = RealityShowAdapter()
+        adapter5.setOnItemClickListener(this)
         initRecyclerView(adapter5, binding.rcView5)
         adapter6 = Telehikaya2Adapter()
+        adapter6.setOnItemClickListener(this)
         initRecyclerView(adapter6, binding.rcView6)
         adapter7 = Derekti2Adapter()
+        adapter7.setOnItemClickListener(this)
         initRecyclerView(adapter7, binding.rcView7)
         adapter8 = Shetel2Adapter()
+        adapter8.setOnItemClickListener(this)
         initRecyclerView(adapter8, binding.rcView8)
     }
 }

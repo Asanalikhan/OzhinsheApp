@@ -9,5 +9,5 @@ data class Item (
     @PrimaryKey(autoGenerate = true)
     var key: Int? = null,
     @ColumnInfo(name = "id")
-    var id: Int,
+    var id: Int?,
 )

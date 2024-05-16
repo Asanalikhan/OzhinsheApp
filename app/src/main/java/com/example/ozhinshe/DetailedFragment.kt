@@ -75,13 +75,15 @@ class DetailedFragment : Fragment(), OnItemClickListener {
                 }
                 (activity as? HomeActivity)?.replaceFragment(sanattarFragment)
             }
-            imageButton2.setOnClickListener {// while onclick fun will add item to db by its id, it would to refactor
-                imageButton2.background.setTint(R.color.button2)
-                val item = Item(null, id!!)
-                Thread{
-                    db.getDao().insertItem(item)
-                }.start()
-            }
+
+        }
+
+        binding.imageButton2.setOnClickListener {// while onclick fun will add item to db by its id, it would to refactor
+            binding.imageButton2.background.setTint(R.color.button2)
+            val item = Item(null, id!!)
+            Thread{
+                db.getDao().insertItem(item)
+            }.start()
         }
 
         adapter = UqsasAdapter(childFragmentManager)

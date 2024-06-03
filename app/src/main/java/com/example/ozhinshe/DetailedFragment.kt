@@ -7,7 +7,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -17,8 +19,8 @@ import com.bumptech.glide.Glide
 import com.example.ozhinshe.adapters.ScreenshotAdapter
 import com.example.ozhinshe.adapters.UqsasAdapter
 import com.example.ozhinshe.data.Item
+import com.example.ozhinshe.data.ItemViewModel
 import com.example.ozhinshe.data.MainApi
-import com.example.ozhinshe.data.MainDB
 import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentDetailedBinding
 import com.example.ozhinshe.modiedata.Movy
@@ -40,12 +42,14 @@ class DetailedFragment : Fragment(), OnItemClickListener {
     private lateinit var responce2: List<Screenshot>
     private lateinit var adapter: UqsasAdapter
     private lateinit var adapter1: ScreenshotAdapter
+    private lateinit var itemViewModel: ItemViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailedBinding.inflate(layoutInflater, container, false)
+        itemViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
         return binding.root
     }
     @SuppressLint("SetTextI18n", "ResourceAsColor")
@@ -59,7 +63,6 @@ class DetailedFragment : Fragment(), OnItemClickListener {
 
         val bundle = arguments
         val id = bundle?.getString("key")?.toInt()
-        val db = MainDB.getDb(requireContext())
 
         binding.apply {
             moreBtn.setOnClickListener {
@@ -79,11 +82,10 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         }
 
         binding.imageButton2.setOnClickListener {// while onclick fun will add item to db by its id, it would to refactor
-            binding.imageButton2.background.setTint(R.color.button2)
-            val item = Item(null, id!!)
-            Thread{
-                db.getDao().insertItem(item)
-            }.start()
+            binding.imageButton2.setBackgroundColor(R.color.button2)
+            val item = Item(null, id)
+            itemViewModel.addItem(item)
+            Toast.makeText(requireContext(), "item added", Toast.LENGTH_SHORT).show()
         }
 
         adapter = UqsasAdapter(childFragmentManager)

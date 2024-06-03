@@ -9,9 +9,23 @@ import androidx.room.RoomDatabase
 abstract class MainDB: RoomDatabase() {
 
     abstract fun getDao(): Dao
-    companion object{
+    companion object {
+        @Volatile
+        private var INSTANCE: MainDB? = null
         fun getDb(context: Context): MainDB{
-            return Room.databaseBuilder(context, MainDB::class.java, "favourite.db").build()
+            val tempInstance = INSTANCE
+            if(tempInstance != null){
+                return tempInstance
+            }
+            synchronized(this){
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    MainDB::class.java,
+                    "favourites"
+                ).build()
+                INSTANCE = instance
+                return instance
+            }
         }
     }
 

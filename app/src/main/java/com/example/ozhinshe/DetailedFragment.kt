@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -81,11 +80,26 @@ class DetailedFragment : Fragment(), OnItemClickListener {
 
         }
 
-        binding.imageButton2.setOnClickListener {// while onclick fun will add item to db by its id, it would to refactor
-            binding.imageButton2.setBackgroundColor(R.color.button2)
+        lifecycleScope.launch(Dispatchers.Main) {
             val item = Item(null, id)
-            itemViewModel.addItem(item)
-            Toast.makeText(requireContext(), "item added", Toast.LENGTH_SHORT).show()
+            if (itemViewModel.getItem(item)) {
+                binding.imageButton2.setImageResource(R.drawable.bookmark_add_selected)
+            } else {
+                binding.imageButton2.setImageResource(R.drawable.bookmark_add)
+            }
+        }
+
+        binding.imageButton2.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.Main) {
+                val item = Item(null, id)
+                if (itemViewModel.getItem(item)) {
+                    itemViewModel.deleteItem(item)
+                    binding.imageButton2.setImageResource(R.drawable.bookmark_add)
+                } else {
+                    binding.imageButton2.setImageResource(R.drawable.bookmark_add_selected)
+                    itemViewModel.addItem(item)
+                }
+            }
         }
 
         adapter = UqsasAdapter(childFragmentManager)

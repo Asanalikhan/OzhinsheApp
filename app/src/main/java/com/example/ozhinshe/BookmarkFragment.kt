@@ -56,8 +56,6 @@ class BookmarkFragment : Fragment(), OnItemClickListener {
             getAllData(items)
         })
 
-
-
     }
 
     private fun getAllData(listItems: List<Item>) {

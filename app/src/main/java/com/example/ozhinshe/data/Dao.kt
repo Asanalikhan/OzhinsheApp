@@ -13,5 +13,7 @@ interface Dao {
     @Query("select * from favourites")
     fun getAllItem(): LiveData<List<Item>>
     @Delete
-    fun deleteItem(item: Item)
+    suspend fun deleteItem(item: Item)
+    @Query("SELECT * FROM favourites WHERE id = :itemId LIMIT 1")
+    suspend fun getItemById(itemId: Int): Item
 }

@@ -9,9 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
+import com.example.ozhinshe.adapters.BookmarkAdapter
 import com.example.ozhinshe.data.Item
 import com.example.ozhinshe.data.ItemViewModel
 import com.example.ozhinshe.data.MainApi
+import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentBookmarkBinding
 import com.example.ozhinshe.modiedata.Movy
 import kotlinx.coroutines.Deferred
@@ -23,16 +29,17 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class BookmarkFragment : Fragment() {
+class BookmarkFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentBookmarkBinding
     private lateinit var mainApi: MainApi
     private lateinit var itemViewModel: ItemViewModel
+    private lateinit var adapter: BookmarkAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBookmarkBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -41,18 +48,19 @@ class BookmarkFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRetrofit()
+        initRecyclerViewAdapters()
+        initRecyclerView(adapter, binding.rcView)
 
         itemViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
         itemViewModel.getAllData.observe(viewLifecycleOwner, Observer { items ->
             getAllData(items)
-
         })
+
 
 
     }
 
     private fun getAllData(listItems: List<Item>) {
-        var listMovy = mutableListOf<Movy>()
         var token = getToken()
         val deferredMovies = mutableListOf<Deferred<Movy>>()
         for (item in listItems) {
@@ -72,8 +80,7 @@ class BookmarkFragment : Fragment() {
         }
         lifecycleScope.launch(Dispatchers.Main) {
             val finalMovies = allMovies.await()
-            listMovy.addAll(finalMovies)
-            binding.eddd.text = listMovy[12].name
+            adapter.submitList(finalMovies)
         }
     }
 
@@ -90,5 +97,27 @@ class BookmarkFragment : Fragment() {
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)
         return token.toString()
+    }
+    private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = adapter
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(recyclerView)
+    }
+    private fun initRecyclerViewAdapters() {
+        adapter = BookmarkAdapter()
+        adapter.setOnItemClickListener(this)
+    }
+
+    override fun onItemClick(id: Int) {
+        val bundle = Bundle()
+        bundle.putString("key", id.toString())
+        val detailedFragment = DetailedFragment()
+        detailedFragment.arguments = bundle
+        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+    }
+
+    override fun onSeasonClick(id: Int) {
+        TODO("Not yet implemented")
     }
 }

@@ -52,4 +52,13 @@
     <string name="qarau">Қарау</string>
     <string name="izdeu_natizhe">Іздеу нәтижелері</string>
     <string name="tizim">Тізім</string>
+    <string name="my_profile">Менің профилім</string>
+    <string name="ondeu">Өңдеу</string>
+    <string name="zheke_derekter">Жеке деректер</string>
+    <string name="change_password">Құпия сөзді өзгерту</string>
+    <string name="qazaqsha">Қазақша</string>
+    <string name="til">Тіл</string>
+    <string name="erezhe_shartar">Ережелер мен шарттар</string>
+    <string name="qarangy_rezhim">Қараңғы режим</string>
+    <string name="habarlandyrular">Хабарландырулар</string>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ProfileFragment">
+    tools:context=".profile.ProfileFragment">
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -223,7 +223,12 @@
             android:text="@string/habarlandyrular"/>
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="24dp"
+            android:thumb="@drawable/thumb"
+            app:track="@drawable/track"
+            android:layout_centerInParent="true"/>
     </FrameLayout>
     <View
         android:layout_width="match_parent"
@@ -243,5 +248,14 @@
             android:layout_marginStart="24dp"
             android:layout_gravity="center_vertical"
             android:text="@string/qarangy_rezhim"/>
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/qarangyRezhim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="24dp"
+            android:thumb="@drawable/thumb"
+            app:track="@drawable/track"
+            android:layout_centerInParent="true"/>
     </FrameLayout>
 </FrameLayout>

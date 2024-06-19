@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.ozhinshe.databinding.ActivityHomeBinding
+import com.example.ozhinshe.profile.ProfileFragment
 
 class HomeActivity : AppCompatActivity() {
     private var currentFragment: Fragment? = null

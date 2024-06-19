@@ -61,4 +61,8 @@
     <string name="erezhe_shartar">Ережелер мен шарттар</string>
     <string name="qarangy_rezhim">Қараңғы режим</string>
     <string name="habarlandyrular">Хабарландырулар</string>
+    <string name="your_name">Сіздің атыңыз</string>
+    <string name="birth_date">Тұылған күні</string>
+    <string name="mobile_phone">Телефон</string>
+    <string name="save_changes">Өзгерістерді сақтау</string>
 </resources>

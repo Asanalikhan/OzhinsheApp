@@ -24,8 +24,12 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val tilFragment = TilFragment()
+        val exitFragment = ExitFragment()
         binding.til.setOnClickListener {
             tilFragment.show(childFragmentManager, "BottomDialog")
+        }
+        binding.exitButton.setOnClickListener {
+            exitFragment.show(childFragmentManager, "BottomDialog")
         }
     }
     override fun onDestroyView() {

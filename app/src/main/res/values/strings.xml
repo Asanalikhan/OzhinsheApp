@@ -65,4 +65,7 @@
     <string name="birth_date">Тұылған күні</string>
     <string name="mobile_phone">Телефон</string>
     <string name="save_changes">Өзгерістерді сақтау</string>
+    <string name="really_exit_account">Сіз шынымен аккаунтыңыздан</string>
+    <string name="no">жоқ</string>
+    <string name="yes_exit">Иә, шығу</string>
 </resources>

@@ -41,6 +41,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="140dp"/>
     <EditText
+        android:id="@+id/fullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -57,6 +58,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="220dp"/>
     <EditText
+        android:id="@+id/tvEmailText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -73,6 +75,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="300dp"/>
     <EditText
+        android:id="@+id/phoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -89,15 +92,16 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="380dp"/>
     <EditText
+        android:id="@+id/birthDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="400dp"
-        android:inputType="date"/>
+        android:inputType="datetime"/>
     <Button
-        android:id="@+id/btnAuthorization"
+        android:id="@+id/saveData"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="24dp"

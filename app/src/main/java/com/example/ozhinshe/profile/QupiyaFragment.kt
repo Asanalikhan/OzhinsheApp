@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.ozhinshe.HomeActivity
 import com.example.ozhinshe.R
 import com.example.ozhinshe.databinding.FragmentQupiyaBinding
 
@@ -19,4 +20,11 @@ class QupiyaFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.imageButton.setOnClickListener {
+            (activity as? HomeActivity)?.replaceFragment(ProfileFragment())
+        }
+    }
 }

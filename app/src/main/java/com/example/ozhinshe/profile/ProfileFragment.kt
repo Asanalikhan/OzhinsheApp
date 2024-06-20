@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.ozhinshe.HomeActivity
+import com.example.ozhinshe.HomeFragment
 import com.example.ozhinshe.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -30,6 +32,15 @@ class ProfileFragment : Fragment() {
         }
         binding.exitButton.setOnClickListener {
             exitFragment.show(childFragmentManager, "BottomDialog")
+        }
+        binding.imageButton.setOnClickListener {
+            (activity as? HomeActivity)?.replaceFragment(HomeFragment())
+        }
+        binding.zhekeDerek.setOnClickListener {
+            (activity as? HomeActivity)?.replaceFragment(ZhekeDerekterFragment())
+        }
+        binding.password.setOnClickListener {
+            (activity as? HomeActivity)?.replaceFragment(QupiyaFragment())
         }
     }
     override fun onDestroyView() {

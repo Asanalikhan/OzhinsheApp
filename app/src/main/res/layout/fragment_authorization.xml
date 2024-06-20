@@ -200,7 +200,7 @@
             android:height="22sp"
             android:visibility="gone"
             android:text="@string/error_msg"
-            android:textColor="#FF402B"
+            android:textColor="@color/error"
             android:textSize="16sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"

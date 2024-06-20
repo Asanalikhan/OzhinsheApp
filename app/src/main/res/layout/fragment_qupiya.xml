@@ -103,8 +103,18 @@
             android:inputType="textPassword"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/error_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="370dp"
+        android:textSize="16sp"
+        android:textColor="@color/error"
+        android:text="Password is invalid"
+        android:visibility="gone"/>
     <Button
-        android:id="@+id/btnAuthorization"
+        android:id="@+id/savePassword"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="24dp"

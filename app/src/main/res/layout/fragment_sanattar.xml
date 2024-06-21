@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background"
+    style="@style/Background"
     tools:context=".SanattarFragment">
     <ImageButton
         android:id="@+id/imageButton"
@@ -24,14 +24,14 @@
         android:textAlignment="center"
         android:layout_marginTop="70dp"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/bolimder"
-        android:textColor="@color/white"
+        android:text="@string/telehikaya"
+        style="@style/Head"
         android:textSize="20sp" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="120dp"
-        android:background="@color/input" />
+        style="@style/InputBolim" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView"
         android:layout_marginTop="140dp"

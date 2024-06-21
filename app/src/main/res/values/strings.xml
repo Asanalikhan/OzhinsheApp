@@ -68,4 +68,6 @@
     <string name="really_exit_account">Сіз шынымен аккаунтыңыздан</string>
     <string name="no">жоқ</string>
     <string name="yes_exit">Иә, шығу</string>
+    <string name="profile">Профиль</string>
+    <string name="password_is_invalid">Password is invalid</string>
 </resources>

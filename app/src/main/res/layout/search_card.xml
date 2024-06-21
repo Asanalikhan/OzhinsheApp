@@ -24,7 +24,7 @@
         android:layout_marginStart="90dp"
         android:layout_marginTop="5dp"
         android:fontFamily="sans-serif"
-        android:textColor="@color/white"
+        style="@style/Head"
         android:textSize="14sp" />
     <TextView
         android:id="@+id/srMovieDesc"
@@ -33,13 +33,12 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:layout_marginTop="35dp"
-        android:text="TextView"
-        android:textColor="@color/undersalem"
+        style="@style/Subhead"
         android:textSize="12sp" />
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/input"
+        android:backgroundTint="?attr/colorOnSecondaryContainer"
         app:cardCornerRadius="10dp"
         android:layout_marginStart="90dp"
         android:layout_marginTop="70dp">
@@ -66,5 +65,5 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="120dp"
-        android:background="@color/input" />
+        style="@style/InputBolim"/>
 </FrameLayout>

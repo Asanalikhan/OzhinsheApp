@@ -40,10 +40,9 @@
         android:id="@+id/rcMovieName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_marginTop="16dp"
         android:layout_gravity="start"
-        android:textColor="@color/white"
+        style="@style/Head"
         android:textSize="14sp"
         android:fontFamily="sans-serif-medium"/>
 
@@ -52,10 +51,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
         android:layout_gravity="start"
         android:textSize="12sp"
-        android:textColor="@color/undersalem"
+        style="@style/Subhead"
         android:fontFamily="sans-serif"
         android:ellipsize="end"
         android:maxLines="2"/>

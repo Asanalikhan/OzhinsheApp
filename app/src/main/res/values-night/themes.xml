@@ -9,6 +9,28 @@
         <item name="colorOnTertiary">@color/unselected</item>
         <item name="colorOnPrimaryContainer">@color/zhinshe</item>
         <item name="colorOnPrimaryFixed">@color/input</item>
+        <item name="colorOnPrimaryFixedVariant">@color/border</item>
+        <item name="colorOnPrimarySurface">@color/search_text</item>
+        <item name="colorOnSecondaryContainer">@color/input</item>
+    </style>
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/border</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="passwordToggleEnabled">true</item>
+        <item name="passwordToggleDrawable">@drawable/show</item>
+    </style>
+    <style name="CustomTextInputLayout2" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/border</item>
+        <item name="boxBackgroundColor">@color/input</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="endIconDrawable">@drawable/union</item>
+        <item name="endIconMode">clear_text</item>
     </style>
     <style name="Theme.Ozhinshe" parent="Base.Theme.Ozhinshe" />
     <style name="Background">
@@ -35,5 +57,12 @@
     </style>
     <style name="InputBolim">
         <item name="android:background">@color/input</item>
+    </style>
+    <style name="Profile">
+        <item name="android:background">@color/input</item>
+    </style>
+    <style name="Sanattar">
+        <item name="android:textColor">@color/search_text</item>
+        <item name="android:backgroundTint">@color/border</item>
     </style>
 </resources>

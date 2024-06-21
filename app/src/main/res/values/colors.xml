@@ -18,4 +18,5 @@
     <color name="view">#D1D5DB</color>
     <color name="zhinshe">#F8EEFF</color>
     <color name="back">#F3F4F6</color>
+    <color name="authborder">#E5EBF0</color>
 </resources>

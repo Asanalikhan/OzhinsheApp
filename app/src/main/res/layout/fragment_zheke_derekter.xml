@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background"
+    style="@style/Background"
     tools:context=".profile.ZhekeDerekterFragment">
 
     <ImageButton
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:text="@string/zheke_derekter"
-        android:textColor="@color/white"
+        style="@style/Head"
         android:textSize="20sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="65dp" />
@@ -31,12 +31,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="120dp"
-        android:background="@color/input"/>
+        style="@style/InputBolim"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="@color/undersalem"
+        style="@style/Subhead"
         android:text="@string/your_name"
         android:layout_marginStart="24dp"
         android:layout_marginTop="140dp"/>
@@ -44,7 +44,7 @@
         android:id="@+id/fullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        style="@style/Head"
         android:textSize="16sp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="160dp"
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="@color/undersalem"
+        style="@style/Subhead"
         android:text="Email"
         android:layout_marginStart="24dp"
         android:layout_marginTop="220dp"/>
@@ -61,7 +61,7 @@
         android:id="@+id/tvEmailText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        style="@style/Head"
         android:textSize="16sp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="240dp"
@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="@color/undersalem"
+        style="@style/Subhead"
         android:text="@string/mobile_phone"
         android:layout_marginStart="24dp"
         android:layout_marginTop="300dp"/>
@@ -78,7 +78,7 @@
         android:id="@+id/phoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        style="@style/Head"
         android:textSize="16sp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="320dp"
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="@color/undersalem"
+        style="@style/Subhead"
         android:text="@string/birth_date"
         android:layout_marginStart="24dp"
         android:layout_marginTop="380dp"/>
@@ -95,7 +95,7 @@
         android:id="@+id/birthDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        style="@style/Head"
         android:textSize="16sp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="400dp"
@@ -107,6 +107,7 @@
         android:layout_marginHorizontal="24dp"
         android:backgroundTint="@color/button"
         android:fontFamily="sans-serif-medium"
+        android:textColor="@color/white"
         android:text="@string/save_changes"
         android:textSize="16sp"
         app:cornerRadius="12dp"

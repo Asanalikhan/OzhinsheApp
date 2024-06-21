@@ -7,16 +7,6 @@
     style="@style/Background"
     tools:context=".profile.ProfileFragment">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="24dp"
-        android:contentDescription="@string/otkizu"
-        android:src="@drawable/back2"
-        android:background="@android:color/transparent"
-        tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/cvMovieName"
         android:layout_width="wrap_content"

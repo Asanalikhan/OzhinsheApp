@@ -5,11 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.NavHostFragment
-import com.example.ozhinshe.R
 import com.example.ozhinshe.databinding.ExitFragmentBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import androidx.navigation.fragment.findNavController
 
 class ExitFragment: BottomSheetDialogFragment() {
 

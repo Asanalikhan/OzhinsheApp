@@ -3,5 +3,23 @@
     <style name="Base.Theme.Ozhinshe" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+    <style name="Theme.Ozhinshe" parent="Base.Theme.Ozhinshe" />
+    <style name="Background">
+        <item name="android:background">@color/background</item>
+    </style>
+    <style name="Head">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="Subhead">
+        <item name="android:textColor">@color/undersalem</item>
+    </style>
+    <style name="Skip">
+        <item name="android:textColor">@color/search_text</item>
+        <item name="backgroundTint">@color/background</item>
+    </style>
+    <style name="UnderLogin">
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>

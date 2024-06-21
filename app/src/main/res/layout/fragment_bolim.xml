@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    style="@style/Background"
     tools:context=".BolimFragment">
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:text="@string/bolimder"
-            android:textColor="@color/white"
+            style="@style/Head"
             android:textSize="20sp"
             android:layout_marginStart="160dp"
             android:layout_marginTop="-40dp" />
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginVertical="24dp"
-            android:background="@color/input"/>
+            style="@style/InputBolim"/>
         <ListView
             android:id="@+id/seasons"
             android:layout_width="wrap_content"

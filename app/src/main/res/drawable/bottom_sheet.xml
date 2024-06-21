@@ -6,5 +6,5 @@
         android:topRightRadius="28dp"/>
     <stroke
         android:width="0dp"/>
-    <solid android:color="@color/input"/>
+    <solid android:color="?attr/colorOnBackground"/>
 </shape>

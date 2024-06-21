@@ -6,6 +6,7 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorOnBackground">@color/background</item>
         <item name="colorOnSecondary">@color/unselected</item>
+        <item name="colorOnTertiary">@color/unselected</item>
     </style>
     <style name="Theme.Ozhinshe" parent="Base.Theme.Ozhinshe" />
     <style name="Background">

@@ -70,7 +70,7 @@
                 android:layout_marginStart="58dp"
                 android:text="@string/tizimge_qosu"
                 android:textSize="12sp"
-                android:textColor="@color/undersalem"
+                android:textColor="?attr/colorOnTertiary"
                 android:fontFamily="sans-serif-medium"/>
 
             <TextView
@@ -82,7 +82,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="70dp"
                 android:textSize="12sp"
-                android:textColor="@color/undersalem"
+                android:textColor="?attr/colorOnTertiary"
                 android:fontFamily="sans-serif-medium"/>
         </FrameLayout>
 
@@ -92,7 +92,7 @@
             app:cardCornerRadius="32dp"
             android:layout_marginBottom="-32dp"
             android:layout_marginTop="-30dp"
-            android:backgroundTint="@color/background"
+            style="@style/Background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,8 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="TextView"
-                    android:textColor="@color/white"
+                    style="@style/Head"
                     android:textSize="24sp" />
                 <TextView
                     android:id="@+id/cvMovieDesc"
@@ -116,20 +115,18 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:layout_marginTop="8dp"
-                    android:text="TextView"
-                    android:textColor="@color/undersalem"
+                    style="@style/Subhead"
                     android:textSize="12sp" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="24dp"
-                    android:background="@color/input"/>
+                    style="@style/InputBolim"/>
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="5"
-                    android:text="@string/your_long_text"/>
+                    android:maxLines="5"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -171,11 +168,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="24dp"
-                    android:background="@color/input"/>
+                    style="@style/InputBolim"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white"
+                    style="@style/Head"
                     android:textSize="16sp"
                     android:text="@string/bolimder"/>
                 <TextView
@@ -186,7 +183,7 @@
                     android:layout_marginEnd="30dp"
                     android:layout_gravity="end"
                     android:textSize="14sp"
-                    android:textColor="@color/undersalem"/>
+                    style="@style/Subhead"/>
                 <ImageButton
                     android:id="@+id/moreBtn"
                     android:layout_width="50dp"
@@ -201,7 +198,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white"
+                    style="@style/Head"
                     android:textSize="16sp"
                     android:layout_marginTop="32dp"
                     android:text="@string/screenshots"
@@ -219,7 +216,7 @@
                     android:layout_marginTop="32dp"
                     android:text="@string/uqsas"
                     android:textSize="16sp"
-                    android:textColor="@color/white"
+                    style="@style/Head"
                     android:fontFamily="sans-serif-medium"
                     android:layout_gravity="start"/>
                 <TextView

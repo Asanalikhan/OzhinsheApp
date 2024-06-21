@@ -154,6 +154,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/button"
+            style="@style/Button"
             android:fontFamily="sans-serif-medium"
             android:text="@string/login"
             android:textSize="16sp"

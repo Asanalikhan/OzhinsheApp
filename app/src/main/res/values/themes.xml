@@ -7,6 +7,8 @@
         <item name="colorOnBackground">@color/white</item>
         <item name="colorOnSecondary">@color/view</item>
         <item name="colorOnTertiary">@color/view</item>
+        <item name="colorOnPrimaryContainer">@color/input</item>
+        <item name="colorOnPrimaryFixed">@color/back</item>
     </style>
     <style name="Theme.Ozhinshe" parent="Base.Theme.Ozhinshe" />
     <style name="Background">

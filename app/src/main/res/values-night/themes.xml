@@ -53,7 +53,7 @@
         <item name="android:textColor">@color/background</item>
     </style>
     <style name="Button2">
-        <item name="backgroundTint">@color/login</item>
+        <item name="backgroundTint">@color/background</item>
     </style>
     <style name="InputBolim">
         <item name="android:background">@color/input</item>

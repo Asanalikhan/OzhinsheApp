@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/bottom_sheet"
     android:orientation="vertical">
 
@@ -11,47 +13,56 @@
         android:background="@drawable/view_corner_rounded"
         android:layout_marginTop="21dp"
         android:layout_gravity="center_horizontal" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/til"
-        android:textColor="@color/white"
+        style="@style/Head"
         android:textSize="24sp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/english"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="English"
-        android:textColor="@color/white"
+        style="@style/Head"
         android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"/>
+        android:layout_marginHorizontal="24dp"
+        app:drawableEndCompat="@drawable/not_check" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginVertical="20dp"
         android:layout_marginHorizontal="24dp"
-        android:background="@color/border"/>
+        style="@style/InputBolim"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/qazaqsha"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="@string/qazaqsha"
-        android:textColor="@color/white"
-        android:layout_marginStart="24dp"/>
+        style="@style/Head"
+        android:layout_marginHorizontal="24dp"
+        app:drawableEndCompat="@drawable/check" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginVertical="20dp"
         android:layout_marginHorizontal="24dp"
-        android:background="@color/border"/>
+        style="@style/InputBolim"/>
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/ruskiy"
+        style="@style/Head"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="32dp"
         android:text="Russian"
-        android:textColor="@color/white"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="32dp"/>
+        android:textSize="16sp"
+        app:drawableEndCompat="@drawable/not_check" />
 </LinearLayout>

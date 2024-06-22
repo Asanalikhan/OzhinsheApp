@@ -13,7 +13,8 @@ import com.example.ozhinshe.databinding.FragmentOnBoardBinding
 
 class OnBoardFragment : Fragment() {
 
-    private lateinit var binding: FragmentOnBoardBinding
+    private var _binding: FragmentOnBoardBinding? = null
+    private val binding get() = _binding!!
     private var titleList = mutableListOf<String>("Фильмдер, телехикаялар, ситкомдар, анимациялық жобалар, телебағдарламалар мен реалити-шоулар, аниме және тағы басқалары", "Кез келген құрылғыдан қара \n" +
             "Сүйікті фильміңді  қосымша төлемсіз телефоннан, планшеттен, ноутбуктан қара", "Тіркелу оңай. Қазір тіркел де қалаған фильміңе қол жеткіз")
     private var imageList = mutableListOf<Int>(
@@ -26,7 +27,7 @@ class OnBoardFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        binding = FragmentOnBoardBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentOnBoardBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,14 +37,6 @@ class OnBoardFragment : Fragment() {
         binding.viewPager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         val indicator = binding.indicator
         indicator.setViewPager(binding.viewPager2)
-
-        binding.btnOtkizu.setOnClickListener {
-            binding.viewPager2.apply {
-                beginFakeDrag()
-                fakeDragBy(-12f)
-                endFakeDrag()
-            }
-        }
 
         binding.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
@@ -60,8 +53,15 @@ class OnBoardFragment : Fragment() {
             }
         })
 
+        binding.btnOtkizu.setOnClickListener {
+            findNavController().navigate(R.id.action_onBoardFragment_to_authorizationFragment)
+        }
         binding.button.setOnClickListener {
             findNavController().navigate(R.id.action_onBoardFragment_to_authorizationFragment)
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

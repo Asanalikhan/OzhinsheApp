@@ -54,41 +54,4 @@
         android:name="com.example.ozhinshe.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
-    <fragment
-        android:id="@+id/sanattarFragment"
-        android:name="com.example.ozhinshe.SanattarFragment"
-        android:label="fragment_sanattar"
-        tools:layout="@layout/fragment_sanattar" >
-        <action
-            android:id="@+id/action_sanattarFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.ozhinshe.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
-        <action
-            android:id="@+id/action_searchFragment_to_sanattarFragment"
-            app:destination="@id/sanattarFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.ozhinshe.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/bolimFragment"
-        android:name="com.example.ozhinshe.BolimFragment"
-        android:label="fragment_bolim"
-        tools:layout="@layout/fragment_bolim" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.ozhinshe.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_authorizationFragment"
-            app:destination="@id/authorizationFragment" />
-    </fragment>
 </navigation>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.ozhinshe.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailedFragment2"
+            app:destination="@id/detailedFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_sanattarFragment"
+            app:destination="@id/sanattarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.ozhinshe.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_zhekeDerekterFragment"
+            app:destination="@id/zhekeDerekterFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_qupiyaFragment"
+            app:destination="@id/qupiyaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.example.ozhinshe.BookmarkFragment"
+        android:label="fragment_bookmark"
+        tools:layout="@layout/fragment_bookmark" >
+        <action
+            android:id="@+id/action_bookmarkFragment_to_detailedFragment2"
+            app:destination="@id/detailedFragment2" />
+    </fragment>
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.example.ozhinshe.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.ozhinshe.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/zhekeDerekterFragment"
+        android:name="com.example.ozhinshe.profile.ZhekeDerekterFragment"
+        android:label="fragment_zheke_derekter"
+        tools:layout="@layout/fragment_zheke_derekter" />
+    <fragment
+        android:id="@+id/qupiyaFragment"
+        android:name="com.example.ozhinshe.profile.QupiyaFragment"
+        android:label="fragment_qupiya"
+        tools:layout="@layout/fragment_qupiya" />
+    <fragment
+        android:id="@+id/bolimFragment"
+        android:name="com.example.ozhinshe.BolimFragment"
+        android:label="fragment_bolim"
+        tools:layout="@layout/fragment_bolim" />
+    <fragment
+        android:id="@+id/sanattarFragment"
+        android:name="com.example.ozhinshe.SanattarFragment"
+        android:label="fragment_sanattar"
+        tools:layout="@layout/fragment_sanattar" >
+        <action
+            android:id="@+id/action_sanattarFragment_to_detailedFragment2"
+            app:destination="@id/detailedFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedFragment2"
+        android:name="com.example.ozhinshe.DetailedFragment"
+        android:label="fragment_detailed"
+        tools:layout="@layout/fragment_detailed" >
+        <action
+            android:id="@+id/action_detailedFragment2_to_bolimFragment"
+            app:destination="@id/bolimFragment" />
+        <action
+            android:id="@+id/action_detailedFragment2_to_bolimFragment2"
+            app:destination="@id/bolimFragment" />
+        <action
+            android:id="@+id/action_detailedFragment2_to_bolimFragment3"
+            app:destination="@id/bolimFragment" />
+        <action
+            android:id="@+id/action_detailedFragment2_to_sanattarFragment"
+            app:destination="@id/sanattarFragment" />
+    </fragment>
+</navigation>

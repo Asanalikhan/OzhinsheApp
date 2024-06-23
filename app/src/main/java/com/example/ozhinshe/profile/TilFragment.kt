@@ -1,5 +1,7 @@
 package com.example.ozhinshe.profile
 
+import android.content.Context
+import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,28 +9,67 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.ozhinshe.R
+import com.example.ozhinshe.databinding.FragmentProfileBinding
 import com.example.ozhinshe.databinding.TilFragmentBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import java.util.Locale
 
 class TilFragment: BottomSheetDialogFragment() {
 
-    private lateinit var binding: TilFragmentBinding
+    private var _binding: TilFragmentBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = TilFragmentBinding.inflate(layoutInflater, container, false)
+    ): View {
+        _binding = TilFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.english.setOnClickListener { updateDrawables(binding.english) }
-        binding.qazaqsha.setOnClickListener { updateDrawables(binding.qazaqsha) }
-        binding.ruskiy.setOnClickListener { updateDrawables(binding.ruskiy) }
+        when(loadLocale()){
+            "en" -> {updateDrawables(binding.english)}
+            "kk" -> {updateDrawables(binding.qazaqsha)}
+            "ru" -> {updateDrawables(binding.ruskiy)}
+        }
 
+        binding.english.setOnClickListener {
+            updateDrawables(binding.english)
+            setLocale("en")
+        }
+        binding.qazaqsha.setOnClickListener {
+            updateDrawables(binding.qazaqsha)
+            setLocale("kk")
+        }
+        binding.ruskiy.setOnClickListener {
+            updateDrawables(binding.ruskiy)
+            setLocale("ru")
+        }
+
+    }
+
+    private fun setLocale(localeName: String) {
+        val locale = Locale(localeName)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.setLocale(locale)
+        requireContext().resources.updateConfiguration(config, requireContext().resources.displayMetrics)
+
+        val sharedPreferences = requireContext().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        with(sharedPreferences.edit()) {
+            putString("My_Lang", localeName)
+            apply()
+        }
+
+        requireActivity().recreate()
+    }
+    private fun loadLocale(): String {
+        val sharedPreferences = requireContext().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val language = sharedPreferences.getString("My_Lang", "")
+        return language.toString()
     }
 
     private fun updateDrawables(selectedTextView: TextView) {
@@ -47,5 +88,10 @@ class TilFragment: BottomSheetDialogFragment() {
             drawableId,  // Drawable right (end)
             0   // Drawable bottom
         )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

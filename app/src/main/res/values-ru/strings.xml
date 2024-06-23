@@ -70,4 +70,5 @@
     <string name="yes_exit">Да, выйти</string>
     <string name="profile">Профиль</string>
     <string name="password_is_invalid">Пароль недействителен</string>
+    <string name="language">руский</string>
 </resources>

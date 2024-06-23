@@ -152,7 +152,7 @@
             android:layout_marginEnd="50dp"
             android:layout_gravity="end|center_vertical"
             android:textSize="14sp"
-            android:text="@string/qazaqsha"
+            android:text="@string/language"
             style="@style/Subhead"/>
         <ImageButton
             android:layout_width="50dp"

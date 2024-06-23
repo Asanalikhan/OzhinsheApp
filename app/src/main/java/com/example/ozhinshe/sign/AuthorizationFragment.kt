@@ -45,6 +45,8 @@ class AuthorizationFragment: Fragment(){
 
         val inputEmail = binding.textInputLayout
         val inputPassworld = binding.textInputLayout2
+        val sharedPreferences = requireContext().getSharedPreferences("Profile", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
 
         binding.btnAuthorization.setOnClickListener {
             hideKeyboard(it)
@@ -71,6 +73,9 @@ class AuthorizationFragment: Fragment(){
             if (access && access1) {
                 auth(AuthRequest(email, password)) { success ->
                     if (success) {
+                        editor.putString("email", email)
+                        editor.putString("password", password)
+                        editor.apply()
                         findNavController().navigate(R.id.action_authorizationFragment_to_homeActivity)
                         requireActivity().finish()
                     }

@@ -30,14 +30,11 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
-
-
-
     }
+
     fun hideBottomNavigationView() {
         binding.bottomNavigationView.visibility = View.GONE
     }
-
     fun showBottomNavigationView() {
         binding.bottomNavigationView.visibility = View.VISIBLE
     }

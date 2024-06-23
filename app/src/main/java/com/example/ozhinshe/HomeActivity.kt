@@ -1,6 +1,7 @@
 package com.example.ozhinshe
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -30,5 +31,14 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 
+
+
+    }
+    fun hideBottomNavigationView() {
+        binding.bottomNavigationView.visibility = View.GONE
+    }
+
+    fun showBottomNavigationView() {
+        binding.bottomNavigationView.visibility = View.VISIBLE
     }
 }

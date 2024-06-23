@@ -48,6 +48,7 @@ class SearchFragment : Fragment(), OnItemClickListener {
         var token = getToken()
         initRecyclerViewAdapters()
         initRecyclerView(adapter, binding.rcView)
+        (activity as HomeActivity).showBottomNavigationView()
 
         val credentials = "{}"
         val details = "{}"

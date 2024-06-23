@@ -64,6 +64,8 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         val bundle = arguments
         val id = bundle?.getString("key")?.toInt()
 
+        (activity as HomeActivity).hideBottomNavigationView()
+
         binding.apply {
             moreBtn.setOnClickListener {
                 if (id != null) onSeasonClick(id)

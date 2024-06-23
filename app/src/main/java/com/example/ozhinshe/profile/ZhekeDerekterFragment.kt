@@ -34,6 +34,7 @@ class ZhekeDerekterFragment : Fragment() {
         }
 
         loadData()
+        (activity as HomeActivity).hideBottomNavigationView()
 
         binding.saveData.setOnClickListener {
             saveData()

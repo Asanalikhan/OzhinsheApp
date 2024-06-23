@@ -54,6 +54,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
         initRetrofit()
         initRecyclerViewAdapters()
         initRecyclerViews()
+        (activity as HomeActivity).showBottomNavigationView()
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)

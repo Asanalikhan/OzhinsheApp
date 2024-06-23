@@ -51,6 +51,7 @@ class BookmarkFragment : Fragment(), OnItemClickListener {
         initRetrofit()
         initRecyclerViewAdapters()
         initRecyclerView(adapter, binding.rcView)
+        (activity as HomeActivity).showBottomNavigationView()
 
         itemViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
         itemViewModel.getAllData.observe(viewLifecycleOwner, Observer { items ->

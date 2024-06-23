@@ -39,6 +39,8 @@ class BolimFragment() : Fragment() {
         adapter.submitList(seriesCount, id!!)
 
         binding.imageButton.setOnClickListener { findNavController().popBackStack() }
+
+        (activity as HomeActivity).hideBottomNavigationView()
     }
     private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

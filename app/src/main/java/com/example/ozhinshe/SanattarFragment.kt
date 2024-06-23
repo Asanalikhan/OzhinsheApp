@@ -126,6 +126,7 @@ class SanattarFragment : Fragment(), OnItemClickListener {
             }
         }
 
+        (activity as HomeActivity).hideBottomNavigationView()
 
         binding.imageButton.setOnClickListener {
             findNavController().popBackStack()

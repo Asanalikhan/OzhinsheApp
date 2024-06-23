@@ -31,6 +31,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadEmail()
+        (activity as HomeActivity).showBottomNavigationView()
 
         val tilFragment = TilFragment()
         val exitFragment = ExitFragment()

@@ -40,6 +40,7 @@ class QupiyaFragment : Fragment() {
             }
         }
 
+        (activity as HomeActivity).hideBottomNavigationView()
     }
 
     private fun isPasswordValid():Boolean {

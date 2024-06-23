@@ -53,6 +53,7 @@ class SplashScreen : AppCompatActivity() {
             navController.navigate(R.id.action_onBoardFragment_to_authorizationFragment)
         }
     }
+
     private fun login(){
         val sharedPreferences = getSharedPreferences("Profile", Context.MODE_PRIVATE)
         val email = sharedPreferences.getString("email", null)

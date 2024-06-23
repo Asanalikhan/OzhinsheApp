@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -110,9 +111,7 @@ class BookmarkFragment : Fragment(), OnItemClickListener {
     override fun onItemClick(id: Int) {
         val bundle = Bundle()
         bundle.putString("key", id.toString())
-        val detailedFragment = DetailedFragment()
-        detailedFragment.arguments = bundle
-        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+        findNavController().navigate(R.id.action_bookmarkFragment_to_detailedFragment, bundle)
     }
 
     override fun onSeasonClick(id: Int) {

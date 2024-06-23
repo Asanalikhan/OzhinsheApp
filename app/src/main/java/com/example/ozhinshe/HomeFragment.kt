@@ -8,28 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
-import com.example.ozhinshe.adapters.AgesAdapter
-import com.example.ozhinshe.adapters.DerektiAdapter
-import com.example.ozhinshe.adapters.ForYouAdapter
-import com.example.ozhinshe.adapters.GenresAdapter
-import com.example.ozhinshe.adapters.MainPageAdapter
-import com.example.ozhinshe.adapters.RealityAdapter
-import com.example.ozhinshe.adapters.ShetelAdapter
-import com.example.ozhinshe.adapters.TelehikayaAdapter
-import com.example.ozhinshe.adapters.TrendAdapter
-import com.example.ozhinshe.adapters.WatchedMovieAdapter
-import com.example.ozhinshe.adapters.ZhobalarAdapter
+import com.example.ozhinshe.adapters.*
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentHomeBinding
-import com.example.ozhinshe.modiedata.CategoryAges
-import com.example.ozhinshe.modiedata.DescMovies
-import com.example.ozhinshe.modiedata.GenresResponce
-import com.example.ozhinshe.modiedata.MovieResponce
+import com.example.ozhinshe.modiedata.*
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -55,7 +43,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -74,7 +62,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
                 val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
                 val responce1: GenresResponce = mainApi.getGenres(token = "Bearer $token")
                 val responce2: DescMovies = mainApi.descMovies(token = "Bearer $token")
-                val responce3: DescMovies =mainApi.genreMovies(direction = "DESC", genreId = 31, token = "Bearer $token")
+                val responce3: DescMovies = mainApi.genreMovies(direction = "DESC", genreId = 31, token = "Bearer $token")
                 val responce4: DescMovies = mainApi.genreMovies(direction = "ASC", genreId = 5, token = "Bearer $token")
                 val responce5: CategoryAges = mainApi.getCategoryAges(token = "Bearer $token")
                 adapter.submitList(response[1].movies)
@@ -158,20 +146,21 @@ class HomeFragment : Fragment(), OnItemClickListener {
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
     }
+
     override fun onItemClick(id: Int) {
         val bundle = Bundle()
         bundle.putString("key", id.toString())
-        val detailedFragment = DetailedFragment()
-        detailedFragment.arguments = bundle
-        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+        findNavController().navigate(R.id.action_homeFragment_to_detailedFragment, bundle)
     }
+
     fun toSanat(int : Int){
         val sanattarFragment = SanattarFragment().apply {
             arguments = Bundle().apply { putInt("int", int) }
         }
-        (activity as? HomeActivity)?.replaceFragment(sanattarFragment)
+        findNavController().navigate(R.id.action_homeFragment_to_sanattarFragment, sanattarFragment.arguments)
     }
+
     override fun onSeasonClick(id: Int) {
-        TODO("Not yet implemented")
+        // TODO: Not yet implemented
     }
 }

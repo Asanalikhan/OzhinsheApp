@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.ozhinshe.HomeActivity
 import com.example.ozhinshe.R
 import com.example.ozhinshe.databinding.FragmentQupiyaBinding
@@ -27,7 +28,7 @@ class QupiyaFragment : Fragment() {
 
         binding.errorMsg.visibility = View.GONE
         binding.imageButton.setOnClickListener {
-            (activity as? HomeActivity)?.replaceFragment(ProfileFragment())
+            findNavController().popBackStack()
         }
         binding.savePassword.setOnClickListener {
             if(isPasswordValid()){

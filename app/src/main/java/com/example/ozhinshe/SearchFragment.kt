@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -60,7 +61,7 @@ class SearchFragment : Fragment(), OnItemClickListener {
                     val sanattarFragment = SanattarFragment().apply {
                         arguments = Bundle().apply { putString("string", textView.text.toString()) }
                     }
-                    (activity as? HomeActivity)?.replaceFragment(sanattarFragment)
+                    findNavController().navigate(R.id.action_searchFragment_to_sanattarFragment)
                 }
             }
         }
@@ -123,7 +124,7 @@ class SearchFragment : Fragment(), OnItemClickListener {
         bundle.putString("key", id.toString())
         val detailedFragment = DetailedFragment()
         detailedFragment.arguments = bundle
-        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+        findNavController().navigate(R.id.action_searchFragment_to_detailedFragment)
     }
     fun hideKeyboard(view: View) {
         val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

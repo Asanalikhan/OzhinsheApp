@@ -11,11 +11,14 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_detailedFragment2"
-            app:destination="@id/detailedFragment2" />
+            android:id="@+id/action_homeFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
         <action
             android:id="@+id/action_homeFragment_to_sanattarFragment"
             app:destination="@id/sanattarFragment" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -35,8 +38,8 @@
         android:label="fragment_bookmark"
         tools:layout="@layout/fragment_bookmark" >
         <action
-            android:id="@+id/action_bookmarkFragment_to_detailedFragment2"
-            app:destination="@id/detailedFragment2" />
+            android:id="@+id/action_bookmarkFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
     </fragment>
     <activity
         android:id="@+id/homeActivity"
@@ -47,7 +50,14 @@
         android:id="@+id/searchFragment"
         android:name="com.example.ozhinshe.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_sanattarFragment"
+            app:destination="@id/sanattarFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/zhekeDerekterFragment"
         android:name="com.example.ozhinshe.profile.ZhekeDerekterFragment"
@@ -69,25 +79,28 @@
         android:label="fragment_sanattar"
         tools:layout="@layout/fragment_sanattar" >
         <action
-            android:id="@+id/action_sanattarFragment_to_detailedFragment2"
-            app:destination="@id/detailedFragment2" />
+            android:id="@+id/action_sanattarFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailedFragment2"
+        android:id="@+id/detailedFragment"
         android:name="com.example.ozhinshe.DetailedFragment"
         android:label="fragment_detailed"
         tools:layout="@layout/fragment_detailed" >
         <action
-            android:id="@+id/action_detailedFragment2_to_bolimFragment"
+            android:id="@+id/action_detailedFragment_to_bolimFragment"
             app:destination="@id/bolimFragment" />
         <action
             android:id="@+id/action_detailedFragment2_to_bolimFragment2"
             app:destination="@id/bolimFragment" />
         <action
-            android:id="@+id/action_detailedFragment2_to_bolimFragment3"
+            android:id="@+id/action_detailedFragment_to_bolimFragment3"
             app:destination="@id/bolimFragment" />
         <action
-            android:id="@+id/action_detailedFragment2_to_sanattarFragment"
+            android:id="@+id/action_detailedFragment_to_sanattarFragment"
             app:destination="@id/sanattarFragment" />
+        <action
+            android:id="@+id/action_detailedFragment_self"
+            app:destination="@id/detailedFragment" />
     </fragment>
 </navigation>

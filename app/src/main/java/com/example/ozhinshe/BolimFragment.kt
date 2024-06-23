@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -37,20 +38,12 @@ class BolimFragment() : Fragment() {
         initRecyclerView(adapter, binding.rcView)
         adapter.submitList(seriesCount, id!!)
 
-        binding.imageButton.setOnClickListener { setOnClick(id) }
+        binding.imageButton.setOnClickListener { findNavController().popBackStack() }
     }
     private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
-    }
-    fun setOnClick(id:Int){
-        itemClickListener?.onItemClick(id)
-        val bundle = Bundle()
-        bundle.putString("key", id.toString())
-        val detailedFragment = DetailedFragment()
-        detailedFragment.arguments = bundle
-        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
     }
 }

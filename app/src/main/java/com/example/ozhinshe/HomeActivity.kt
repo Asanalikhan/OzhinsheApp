@@ -3,37 +3,32 @@ package com.example.ozhinshe
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.ozhinshe.databinding.ActivityHomeBinding
 import com.example.ozhinshe.profile.ProfileFragment
 
 class HomeActivity : AppCompatActivity() {
-    private var currentFragment: Fragment? = null
 
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        currentFragment = HomeFragment()
-        replaceFragment(HomeFragment())
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView3) as NavHostFragment
+        navController = navHostFragment.navController
 
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.home_ -> replaceFragment(HomeFragment())
-                R.id.search -> replaceFragment(SearchFragment())
-                R.id.bookmark -> replaceFragment(BookmarkFragment())
-                R.id.profile -> replaceFragment(ProfileFragment())
-                else -> {}
+        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home_ -> navController.navigate(R.id.homeFragment)
+                R.id.search -> navController.navigate(R.id.searchFragment)
+                R.id.bookmark -> navController.navigate(R.id.bookmarkFragment)
+                R.id.profile -> navController.navigate(R.id.profileFragment)
             }
             true
         }
-    }
 
-    fun replaceFragment(fragment: Fragment) {
-        if (fragment !== currentFragment) {
-            currentFragment = fragment
-            supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).commitNow()
-        }
     }
 }

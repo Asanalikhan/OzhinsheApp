@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -102,31 +103,31 @@ class SanattarFragment : Fragment(), OnItemClickListener {
                 when(int){
                     1 -> {
                         adapter2.submitList(response[0].movies)
-                        binding.cvMovieName.text = "Трендтегілер"
+                        binding.cvMovieName.text = R.string.in_trend.toString()
                     }
                     2 -> {
                         adapter3.submitList(response[1].movies)
-                        binding.cvMovieName.text = "Сізге арналған фильмдер"
+                        binding.cvMovieName.text = R.string.for_you.toString()
                     }
                     3 -> {
                         adapter4.submitList(responce2.content)
-                        binding.cvMovieName.text = "Жаңа жобалар"
+                        binding.cvMovieName.text = R.string.new_zhoba.toString()
                     }
                     4 -> {
                         adapter5.submitList(responce3.content)
-                        binding.cvMovieName.text = "Тв-бағдарлама және реалити-шоу"
+                        binding.cvMovieName.text = R.string.tv_and_show.toString()
                     }
                     5 -> {
                         adapter6.submitList(responce4.content)
-                        binding.cvMovieName.text = "Телехикая"
+                        binding.cvMovieName.text = R.string.telehikaya.toString()
                     }
                     6 -> {
                         adapter7.submitList(response[3].movies)
-                        binding.cvMovieName.text = "Деректі фильм"
+                        binding.cvMovieName.text = R.string.derekti.toString()
                     }
                     7 -> {
                         adapter8.submitList(response[4].movies)
-                        binding.cvMovieName.text = "Шетел фильмдері"
+                        binding.cvMovieName.text = R.string.shetel.toString()
                     }
                 }
             }
@@ -134,7 +135,7 @@ class SanattarFragment : Fragment(), OnItemClickListener {
 
 
         binding.imageButton.setOnClickListener {
-            (activity as? HomeActivity)?.replaceFragment(SearchFragment())
+            findNavController().popBackStack()
         }
     }
     fun initRetrofit(){
@@ -162,7 +163,7 @@ class SanattarFragment : Fragment(), OnItemClickListener {
         bundle.putString("key", id.toString())
         val detailedFragment = DetailedFragment()
         detailedFragment.arguments = bundle
-        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+        findNavController().navigate(R.id.action_sanattarFragment_to_detailedFragment)
     }
     override fun onSeasonClick(id: Int) {
         TODO("not implemented")

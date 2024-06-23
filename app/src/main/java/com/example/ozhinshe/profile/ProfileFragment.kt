@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.fragment.findNavController
 import com.example.ozhinshe.HomeActivity
 import com.example.ozhinshe.HomeFragment
+import com.example.ozhinshe.R
 import com.example.ozhinshe.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -40,10 +42,10 @@ class ProfileFragment : Fragment() {
             exitFragment.show(childFragmentManager, "BottomDialog")
         }
         binding.zhekeDerek.setOnClickListener {
-            (activity as? HomeActivity)?.replaceFragment(ZhekeDerekterFragment())
+            findNavController().navigate(R.id.action_profileFragment_to_zhekeDerekterFragment)
         }
         binding.password.setOnClickListener {
-            (activity as? HomeActivity)?.replaceFragment(QupiyaFragment())
+            findNavController().navigate(R.id.action_profileFragment_to_qupiyaFragment)
         }
 
         binding.qarangyRezhim.setOnCheckedChangeListener {_,  isCheked ->

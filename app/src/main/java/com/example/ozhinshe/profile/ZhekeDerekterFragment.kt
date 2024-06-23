@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.ozhinshe.HomeActivity
 import com.example.ozhinshe.HomeFragment
 import com.example.ozhinshe.R
@@ -29,7 +30,7 @@ class ZhekeDerekterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.imageButton.setOnClickListener {
-            (activity as? HomeActivity)?.replaceFragment(ProfileFragment())
+            findNavController().popBackStack()
         }
 
         loadData()

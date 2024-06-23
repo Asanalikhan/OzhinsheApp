@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -68,16 +69,17 @@ class DetailedFragment : Fragment(), OnItemClickListener {
                 if (id != null) onSeasonClick(id)
             }
             imageButton.setOnClickListener{
-                (activity as? HomeActivity)?.replaceFragment(HomeFragment())
+                findNavController().popBackStack()
             }
             barlygy.setOnClickListener {
                 val sanattarFragment = SanattarFragment().apply {
-                    arguments = Bundle().apply { putString("string", "Ұқсас телехикаялар")
-                    putBoolean("string1", true)}
+                    arguments = Bundle().apply {
+                        putString("string", "Ұқсас телехикаялар")
+                        putBoolean("string1", true)
+                    }
                 }
-                (activity as? HomeActivity)?.replaceFragment(sanattarFragment)
+                findNavController().navigate(R.id.action_detailedFragment_to_sanattarFragment)
             }
-
         }
 
         lifecycleScope.launch(Dispatchers.Main) {
@@ -115,8 +117,7 @@ class DetailedFragment : Fragment(), OnItemClickListener {
                 lifecycleScope.launch(Dispatchers.Main) {
                     binding.cvMovieName.text = responce.name
                     binding.cvMovieDesc.text = "" + responce.year + "." + responce.movieType + "." + responce.seasonCount + " сезон," + responce.seriesCount + " серия."
-                    val into = Glide.with(binding.root).load(responce.poster.link)
-                        .into(binding.imageView2)
+                    Glide.with(binding.root).load(responce.poster.link).into(binding.imageView2)
                     binding.textView.text = responce.description
                     binding.director.text = responce.director
                     binding.producer.text = responce.producer
@@ -130,6 +131,7 @@ class DetailedFragment : Fragment(), OnItemClickListener {
             }
         }
     }
+
     private fun initRetrofit(){
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -139,6 +141,7 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         client(client).addConverterFactory(GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
+
     private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
@@ -149,17 +152,14 @@ class DetailedFragment : Fragment(), OnItemClickListener {
     override fun onItemClick(id: Int) {
         val bundle = Bundle()
         bundle.putString("key", id.toString())
-        val detailedFragment = DetailedFragment()
-        detailedFragment.arguments = bundle
-        (activity as? HomeActivity)?.replaceFragment(detailedFragment)
+        findNavController().navigate(R.id.action_detailedFragment_self, bundle)
     }
+
     override fun onSeasonClick(id: Int) {
-        val bolimFragment = BolimFragment()
         val bundle = Bundle()
         bundle.putInt("id", id)
         bundle.putInt("seriesCount", responce.seriesCount)
         bundle.putString("posterLink", responce.screenshots[0].link)
-        bolimFragment.arguments = bundle
-        (activity as? HomeActivity)?.replaceFragment(bolimFragment)
+        findNavController().navigate(R.id.action_detailedFragment_to_bolimFragment, bundle)
     }
 }

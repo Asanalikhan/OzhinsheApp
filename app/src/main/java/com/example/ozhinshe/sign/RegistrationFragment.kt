@@ -34,6 +34,9 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
+        val sharedPreferences = requireContext().getSharedPreferences("Profile", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
         binding.imageButton.setOnClickListener {
             findNavController().navigate(R.id.action_registrationFragment_to_onBoardFragment)
         }
@@ -81,6 +84,9 @@ class RegistrationFragment : Fragment() {
             if (access && access1 && access2) {
                 regirst(RegistrationRequest(email, password)) { success ->
                     if (success) {
+                        editor.putString("email", email)
+                        editor.putString("password", password)
+                        editor.apply()
                         findNavController().navigate(R.id.action_authorizationFragment_to_homeActivity)
                         requireActivity().finish()
                     }

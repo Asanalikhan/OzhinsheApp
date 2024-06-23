@@ -87,7 +87,7 @@ class RegistrationFragment : Fragment() {
                         editor.putString("email", email)
                         editor.putString("password", password)
                         editor.apply()
-                        findNavController().navigate(R.id.action_authorizationFragment_to_homeActivity)
+                        findNavController().navigate(R.id.action_registrationFragment_to_homeActivity2)
                         requireActivity().finish()
                     }
                 }
@@ -121,6 +121,10 @@ class RegistrationFragment : Fragment() {
                 }
                 val user = responce.body()
                 binding.tvUnderSalemText.text = user?.email
+                val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("token_key", user?.accessToken)
+                editor.apply()
             }
         }
     }

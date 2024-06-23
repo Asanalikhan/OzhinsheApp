@@ -122,9 +122,7 @@ class SearchFragment : Fragment(), OnItemClickListener {
     override fun onItemClick(id: Int) {
         val bundle = Bundle()
         bundle.putString("key", id.toString())
-        val detailedFragment = DetailedFragment()
-        detailedFragment.arguments = bundle
-        findNavController().navigate(R.id.action_searchFragment_to_detailedFragment)
+        findNavController().navigate(R.id.action_searchFragment_to_detailedFragment, bundle)
     }
     fun hideKeyboard(view: View) {
         val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -103,31 +103,24 @@ class SanattarFragment : Fragment(), OnItemClickListener {
                 when(int){
                     1 -> {
                         adapter2.submitList(response[0].movies)
-                        binding.cvMovieName.text = R.string.in_trend.toString()
                     }
                     2 -> {
                         adapter3.submitList(response[1].movies)
-                        binding.cvMovieName.text = R.string.for_you.toString()
                     }
                     3 -> {
                         adapter4.submitList(responce2.content)
-                        binding.cvMovieName.text = R.string.new_zhoba.toString()
                     }
                     4 -> {
                         adapter5.submitList(responce3.content)
-                        binding.cvMovieName.text = R.string.tv_and_show.toString()
                     }
                     5 -> {
                         adapter6.submitList(responce4.content)
-                        binding.cvMovieName.text = R.string.telehikaya.toString()
                     }
                     6 -> {
                         adapter7.submitList(response[3].movies)
-                        binding.cvMovieName.text = R.string.derekti.toString()
                     }
                     7 -> {
                         adapter8.submitList(response[4].movies)
-                        binding.cvMovieName.text = R.string.shetel.toString()
                     }
                 }
             }

@@ -43,6 +43,7 @@ class DetailedFragment : Fragment(), OnItemClickListener {
     private lateinit var adapter: UqsasAdapter
     private lateinit var adapter1: ScreenshotAdapter
     private lateinit var itemViewModel: ItemViewModel
+    private var isExpanded = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,6 +82,19 @@ class DetailedFragment : Fragment(), OnItemClickListener {
                     }
                 }
                 findNavController().navigate(R.id.action_detailedFragment_to_sanattarFragment)
+            }
+            readMore.setOnClickListener {
+                isExpanded = !isExpanded
+
+                if (isExpanded) {
+                    textView.maxLines = Int.MAX_VALUE
+                    readMore.text = getString(R.string.azyraq)
+                    textViewBackground.visibility = View.GONE
+                } else {
+                    textView.maxLines = 7
+                    readMore.text = getString(R.string.tolugraq)
+                    textViewBackground.visibility = View.VISIBLE
+                }
             }
         }
 

@@ -155,9 +155,7 @@ class SanattarFragment : Fragment(), OnItemClickListener {
     override fun onItemClick(id: Int) {
         val bundle = Bundle()
         bundle.putString("key", id.toString())
-        val detailedFragment = DetailedFragment()
-        detailedFragment.arguments = bundle
-        findNavController().navigate(R.id.action_sanattarFragment_to_detailedFragment)
+        findNavController().navigate(R.id.action_sanattarFragment_to_detailedFragment, bundle)
     }
     override fun onSeasonClick(id: Int) {
         TODO("not implemented")

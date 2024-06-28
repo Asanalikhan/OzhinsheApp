@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.example.ozhinshe.R
 import com.example.ozhinshe.databinding.FragmentProfileBinding
 import com.example.ozhinshe.databinding.TilFragmentBinding
@@ -39,14 +40,17 @@ class TilFragment: BottomSheetDialogFragment() {
         binding.english.setOnClickListener {
             updateDrawables(binding.english)
             setLocale("en")
+            findNavController().popBackStack()
         }
         binding.qazaqsha.setOnClickListener {
             updateDrawables(binding.qazaqsha)
             setLocale("kk")
+            findNavController().popBackStack()
         }
         binding.ruskiy.setOnClickListener {
             updateDrawables(binding.ruskiy)
             setLocale("ru")
+            findNavController().popBackStack()
         }
 
     }

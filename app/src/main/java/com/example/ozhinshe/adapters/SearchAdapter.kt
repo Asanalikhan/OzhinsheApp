@@ -18,18 +18,12 @@ class SearchAdapter(): RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
     private val adapterList = mutableListOf<SearchResponse>()
     private var itemClickListener: OnItemClickListener? = null
     inner class SearchViewHolder(private val binding: SearchCardBinding): RecyclerView.ViewHolder(binding.root){
-        val separator: View = binding.separator
         @SuppressLint("SetTextI18n")
         fun onBind(item: SearchResponse, position: Int) {
             val into = Glide.with(binding.root).load(item.poster.link)
                 .into(binding.srcMovieImage)
             binding.srMovieName.text = item.name
             binding.srMovieDesc.text = "" + item.year + "." + item.movieType + "."  + item.categories[0].name
-            if (position == adapterList.size - 1) {
-                separator.visibility = View.GONE
-            } else {
-                separator.visibility = View.VISIBLE
-            }
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(item.id)
             }

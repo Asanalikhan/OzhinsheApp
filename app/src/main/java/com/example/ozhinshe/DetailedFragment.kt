@@ -23,6 +23,7 @@ import com.example.ozhinshe.data.ItemViewModel
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentDetailedBinding
+import com.example.ozhinshe.decoration.CardDecoration
 import com.example.ozhinshe.modiedata.Movy
 import com.example.ozhinshe.modiedata.Screenshot
 import com.example.ozhinshe.modiedata.UqsasGenre
@@ -58,6 +59,7 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         initRetrofit()
+        setOffSet()
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("token_key", null)
@@ -163,6 +165,10 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         recyclerView.adapter = adapter
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
+    }
+    private fun setOffSet(){
+        binding.rcView.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView2.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
     }
 
     override fun onItemClick(id: Int) {

@@ -33,6 +33,7 @@
             android:id="@+id/rcView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <TextView
@@ -49,6 +50,7 @@
             android:id="@+id/rcView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <FrameLayout
@@ -78,6 +80,7 @@
             android:id="@+id/rcView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <FrameLayout
             android:layout_width="match_parent"
@@ -109,6 +112,7 @@
             android:id="@+id/rcView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <TextView
             android:layout_width="wrap_content"
@@ -122,9 +126,9 @@
             android:layout_gravity="start"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView4"
-            android:layout_marginStart="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <FrameLayout
             android:layout_width="match_parent"
@@ -155,6 +159,7 @@
             android:id="@+id/rcView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <FrameLayout
             android:layout_width="match_parent"
@@ -185,6 +190,7 @@
             android:id="@+id/rcView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <FrameLayout
             android:layout_width="match_parent"
@@ -215,6 +221,7 @@
             android:id="@+id/rcView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <TextView
             android:layout_width="wrap_content"
@@ -230,6 +237,7 @@
             android:id="@+id/rcView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <FrameLayout
             android:layout_width="match_parent"
@@ -260,6 +268,7 @@
             android:id="@+id/rcView9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <FrameLayout
             android:layout_width="match_parent"
@@ -290,6 +299,7 @@
             android:id="@+id/rcView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         <FrameLayout
             android:id="@+id/container_layout"

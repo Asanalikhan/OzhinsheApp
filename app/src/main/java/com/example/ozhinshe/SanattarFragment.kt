@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,7 @@ import com.example.ozhinshe.adapters.ZhanaZobaAdapter
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentSanattarBinding
+import com.example.ozhinshe.decoration.CardDecoration
 import com.example.ozhinshe.modiedata.DescMovies
 import com.example.ozhinshe.modiedata.MovieResponce
 import kotlinx.coroutines.Dispatchers
@@ -48,6 +50,7 @@ class SanattarFragment : Fragment(), OnItemClickListener {
     private lateinit var adapter6: Telehikaya2Adapter
     private lateinit var adapter7: Derekti2Adapter
     private lateinit var adapter8: Shetel2Adapter
+    private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +64,7 @@ class SanattarFragment : Fragment(), OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         initRetrofit()
+        setDivider()
         val token = getToken()
         initRecyclerViewAdapters()
 
@@ -140,6 +144,30 @@ class SanattarFragment : Fragment(), OnItemClickListener {
         val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).client(client).addConverterFactory(
             GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
+    }
+    private fun setDivider(){
+        layoutManager = LinearLayoutManager(requireContext())
+        binding.apply {
+            rcView.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView1.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView2.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView3.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView4.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView5.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView6.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView7.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView8.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
+            rcView1.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
+            rcView2.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
+            rcView3.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
+            rcView4.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
+            rcView5.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
+            rcView6.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
+            rcView7.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
+            rcView8.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
+        }
+
     }
     fun getToken(): String{
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)

@@ -4,8 +4,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginEnd="-8dp"
-    android:layout_marginStart="24dp"
     android:orientation="vertical"
     tools:ignore="ExtraText">
 
@@ -13,8 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        android:layout_marginTop="32dp">
+        app:cardElevation="4dp">
         <ImageView
             android:id="@+id/rcMovieImg"
             android:layout_width="190dp"

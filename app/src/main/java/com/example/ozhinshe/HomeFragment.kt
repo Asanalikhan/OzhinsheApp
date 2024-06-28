@@ -17,6 +17,7 @@ import com.example.ozhinshe.adapters.*
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentHomeBinding
+import com.example.ozhinshe.decoration.CardDecoration
 import com.example.ozhinshe.modiedata.*
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -54,6 +55,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
         initRetrofit()
         initRecyclerViewAdapters()
         initRecyclerViews()
+        setOffSetToRecView()
         (activity as HomeActivity).showBottomNavigationView()
 
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
@@ -140,7 +142,19 @@ class HomeFragment : Fragment(), OnItemClickListener {
         adapter10 = ShetelAdapter(childFragmentManager)
         adapter10.setOnItemClickListener(this)
     }
-
+    private fun setOffSetToRecView(){
+        binding.rcView.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 40f.toInt()))
+        binding.rcView1.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView2.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView3.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView4.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView5.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView6.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView7.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView8.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView9.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+        binding.rcView10.addItemDecoration(CardDecoration(rightOffset = 24f.toInt(), leftOffSet = 24f.toInt(), topOffset = 24f.toInt()))
+    }
     private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter

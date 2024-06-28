@@ -34,55 +34,55 @@
         style="@style/InputBolim" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView1"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView2"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView3"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView4"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView5"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView6"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView7"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView8"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

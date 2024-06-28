@@ -16,18 +16,12 @@ class BarlygyAdapter(): RecyclerView.Adapter<BarlygyAdapter.BarlygyViewHolder>()
     private val adapterList = mutableListOf<ContentX>()
     private var itemClickListener: OnItemClickListener? = null
     inner class BarlygyViewHolder(private val binding: SearchCardBinding): RecyclerView.ViewHolder(binding.root){
-        val separator: View = binding.separator
         @SuppressLint("SetTextI18n")
         fun onBind(item: ContentX, position: Int) {
             val into = Glide.with(binding.root).load(item.poster.link)
                 .into(binding.srcMovieImage)
             binding.srMovieName.text = item.name
             binding.srMovieDesc.text = "" + item.year + "." + item.movieType + "."  + item.categories[0].name
-            if (position == adapterList.size - 1) {
-                separator.visibility = View.GONE
-            } else {
-                separator.visibility = View.VISIBLE
-            }
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(item.id)
             }
@@ -47,8 +41,6 @@ class BarlygyAdapter(): RecyclerView.Adapter<BarlygyAdapter.BarlygyViewHolder>()
     ): BarlygyViewHolder {
         return BarlygyViewHolder(SearchCardBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
-
-
 
     override fun onBindViewHolder(holder: BarlygyAdapter.BarlygyViewHolder, position: Int) {
         holder.onBind(adapterList[position], position)

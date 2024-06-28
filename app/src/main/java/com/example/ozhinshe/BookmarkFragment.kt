@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ import com.example.ozhinshe.data.ItemViewModel
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.data.OnItemClickListener
 import com.example.ozhinshe.databinding.FragmentBookmarkBinding
+import com.example.ozhinshe.decoration.CardDecoration
 import com.example.ozhinshe.modiedata.Movy
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +38,7 @@ class BookmarkFragment : Fragment(), OnItemClickListener {
     private lateinit var mainApi: MainApi
     private lateinit var itemViewModel: ItemViewModel
     private lateinit var adapter: BookmarkAdapter
+    private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +54,7 @@ class BookmarkFragment : Fragment(), OnItemClickListener {
         initRetrofit()
         initRecyclerViewAdapters()
         initRecyclerView(adapter, binding.rcView)
+        setDivider()
         (activity as HomeActivity).showBottomNavigationView()
 
         itemViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
@@ -92,6 +96,14 @@ class BookmarkFragment : Fragment(), OnItemClickListener {
         val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).client(client).addConverterFactory(
             GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
+    }
+    private fun setDivider(){
+        layoutManager = LinearLayoutManager(requireContext())
+        binding.apply {
+            rcView.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+            rcView.addItemDecoration(CardDecoration(topOffset = 20f.toInt(), bottomOffset = 20f.toInt()))
+        }
+
     }
     private fun getToken(): String{
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)

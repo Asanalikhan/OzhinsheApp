@@ -67,8 +67,8 @@ class TilFragment: BottomSheetDialogFragment() {
             putString("My_Lang", localeName)
             apply()
         }
-
         requireActivity().recreate()
+        findNavController().navigate(R.id.profileFragment)
     }
     private fun loadLocale(): String {
         val sharedPreferences = requireContext().getSharedPreferences("Settings", Context.MODE_PRIVATE)

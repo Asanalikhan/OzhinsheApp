@@ -9,9 +9,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import com.example.ozhinshe.data.Item
 import com.example.ozhinshe.data.MainApi
 import com.example.ozhinshe.modiedata.*
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -62,6 +65,9 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
 
     private val _screenshot = MutableLiveData<List<Screenshot>>()
     val screenshot: LiveData<List<Screenshot>> get() = _screenshot
+
+    private var _moviesbookmark = MutableLiveData<List<Movy>>()
+    val moviesbookmark: LiveData<List<Movy>> get() = _moviesbookmark
 
     init {
         initRetrofit()
@@ -122,38 +128,26 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
             _screenshot.value = responce2
         }
     }
-//    fun setSanat(int: Int){
-//
-//        viewModelScope.launch(Dispatchers.IO) {
-//            val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
-//            val responce2: DescMovies = mainApi.descMovies(token = "Bearer $token")
-//            val responce3: DescMovies =mainApi.genreMovies(direction = "DESC", genreId = 31, token = "Bearer $token")
-//            val responce4: DescMovies = mainApi.genreMovies(direction = "ASC", genreId = 5, token = "Bearer $token")
-//            viewModelScope.launch(Dispatchers.Main) {
-//                when(int){
-//                    1 -> {
-//                        _trend.value = response[0].movies
-//                    }
-//                    2 -> {
-//                        _forsanat.value = response[1].movies
-//                    }
-//                    3 -> {
-//                        _zhana.value = responce2.content
-//                    }
-//                    4 -> {
-//                        _show.value = responce3.content
-//                    }
-//                    5 -> {
-//                        _telhik.value = responce4.content
-//                    }
-//                    6 -> {
-//                        _derek.value = response[3].movies
-//                    }
-//                    7 -> {
-//                        adapter8.submitList(response[4].movies)
-//                    }
-//                }
-//            }
-//        }
-//    }
+
+    fun getAllData(listItems: List<Item>) {
+        val deferredMovies = mutableListOf<Deferred<Movy>>()
+        for (item in listItems) {
+            deferredMovies.add(
+                viewModelScope.async(Dispatchers.IO) {
+                    val response = mainApi.getMovie(item.id?.toInt(), "Bearer $token")
+                    response
+                }
+            )
+        }
+        val allMovies = viewModelScope.async(Dispatchers.IO) {
+            val movies = mutableListOf<Movy>()
+            deferredMovies.forEach { deferredMovie ->
+                movies.add(deferredMovie.await())
+            }
+            movies
+        }
+        viewModelScope.launch(Dispatchers.Main) {
+            _moviesbookmark.value = allMovies.await()
+        }
+    }
 }

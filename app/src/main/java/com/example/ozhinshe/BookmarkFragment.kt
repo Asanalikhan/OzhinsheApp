@@ -39,6 +39,7 @@ class BookmarkFragment : Fragment(), OnItemClickListener {
     private lateinit var itemViewModel: ItemViewModel
     private lateinit var adapter: BookmarkAdapter
     private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,52 +52,21 @@ class BookmarkFragment : Fragment(), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRetrofit()
         initRecyclerViewAdapters()
         initRecyclerView(adapter, binding.rcView)
         setDivider()
         (activity as HomeActivity).showBottomNavigationView()
 
         itemViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         itemViewModel.getAllData.observe(viewLifecycleOwner, Observer { items ->
-            getAllData(items)
+            viewModel.getAllData(items)
+            viewModel.moviesbookmark.observe(viewLifecycleOwner, Observer { list ->
+                adapter.submitList(list)
+            })
         })
-
     }
 
-    private fun getAllData(listItems: List<Item>) {
-        var token = getToken()
-        val deferredMovies = mutableListOf<Deferred<Movy>>()
-        for (item in listItems) {
-            deferredMovies.add(
-                lifecycleScope.async(Dispatchers.IO) {
-                    val response = mainApi.getMovie(item.id?.toInt(), "Bearer $token")
-                    response
-                }
-            )
-        }
-        val allMovies = lifecycleScope.async(Dispatchers.IO) {
-            val movies = mutableListOf<Movy>()
-            deferredMovies.forEach { deferredMovie ->
-                movies.add(deferredMovie.await())
-            }
-            movies
-        }
-        lifecycleScope.launch(Dispatchers.Main) {
-            val finalMovies = allMovies.await()
-            adapter.submitList(finalMovies)
-        }
-    }
-
-    private fun initRetrofit(){
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        val BASE_URL = "http://api.ozinshe.com"
-        val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).client(client).addConverterFactory(
-            GsonConverterFactory.create()).build()
-        mainApi = retrofit.create(MainApi::class.java)
-    }
     private fun setDivider(){
         layoutManager = LinearLayoutManager(requireContext())
         binding.apply {

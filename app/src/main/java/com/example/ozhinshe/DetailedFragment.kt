@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -37,14 +38,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class DetailedFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentDetailedBinding
-    private lateinit var mainApi: MainApi
-    private lateinit var responce: Movy
-    private lateinit var responce1: UqsasGenre
-    private lateinit var responce2: List<Screenshot>
     private lateinit var adapter: UqsasAdapter
     private lateinit var adapter1: ScreenshotAdapter
     private lateinit var itemViewModel: ItemViewModel
     private var isExpanded = false
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,11 +56,8 @@ class DetailedFragment : Fragment(), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRetrofit()
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         setOffSet()
-
-        val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
-        val token = sharedPreferences.getString("token_key", null)
 
         val bundle = arguments
         val id = bundle?.getString("key")?.toInt()
@@ -127,37 +122,24 @@ class DetailedFragment : Fragment(), OnItemClickListener {
         adapter1 = ScreenshotAdapter()
         initRecyclerView(adapter, binding.rcView2)
         initRecyclerView(adapter1, binding.rcView)
-        lifecycleScope.launch(Dispatchers.IO) {
-            try{
-                responce = mainApi.getMovie(id = id, token = "Bearer $token")
-                responce1 = mainApi.uqsasMovies(direction = "DESC", genreId = id, token = "Bearer $token")
-                responce2 = mainApi.getScreenshots(id = id, token = "Bearer $token")
-                lifecycleScope.launch(Dispatchers.Main) {
-                    binding.cvMovieName.text = responce.name
-                    binding.cvMovieDesc.text = "" + responce.year + "." + responce.movieType + "." + responce.seasonCount + " сезон," + responce.seriesCount + " серия."
-                    Glide.with(binding.root).load(responce.poster.link).into(binding.imageView2)
-                    binding.textView.text = responce.description
-                    binding.director.text = responce.director
-                    binding.producer.text = responce.producer
-                    binding.bolimder.text = "" + responce.seasonCount + " сезон," + responce.seriesCount + " серия"
-                    adapter.submitList(responce1.content)
-                    adapter1.submitList(responce2)
-                }
-            }catch (e: Exception){
-                Log.e("DetailedFragment", "Exception: ${e.message}")
-                e.printStackTrace()
-            }
-        }
-    }
 
-    private fun initRetrofit(){
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        val BASE_URL = "http://api.ozinshe.com"
-        val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).
-        client(client).addConverterFactory(GsonConverterFactory.create()).build()
-        mainApi = retrofit.create(MainApi::class.java)
+        if (id != null) viewModel.setIdDetaied(id)
+
+        viewModel.detailed.observe(viewLifecycleOwner, Observer { responce ->
+            binding.cvMovieName.text = responce.name
+            binding.cvMovieDesc.text = "" + responce.year + "." + responce.movieType + "." + responce.seasonCount + " сезон," + responce.seriesCount + " серия."
+            Glide.with(binding.root).load(responce.poster.link).into(binding.imageView2)
+            binding.textView.text = responce.description
+            binding.director.text = responce.director
+            binding.producer.text = responce.producer
+            binding.bolimder.text = "" + responce.seasonCount + " сезон," + responce.seriesCount + " серия"
+        })
+        viewModel.uqsasgenre.observe(viewLifecycleOwner, Observer { response ->
+            adapter.submitList(response)
+        })
+        viewModel.screenshot.observe(viewLifecycleOwner, Observer { response ->
+            adapter1.submitList(response)
+        })
     }
 
     private fun initRecyclerView(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
@@ -180,8 +162,8 @@ class DetailedFragment : Fragment(), OnItemClickListener {
     override fun onSeasonClick(id: Int) {
         val bundle = Bundle()
         bundle.putInt("id", id)
-        bundle.putInt("seriesCount", responce.seriesCount)
-        bundle.putString("posterLink", responce.screenshots[0].link)
+        //bundle.putInt("seriesCount", responce.seriesCount)
+        //bundle.putString("posterLink", responce.screenshots[0].link)
         findNavController().navigate(R.id.action_detailedFragment_to_bolimFragment, bundle)
     }
 }

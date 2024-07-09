@@ -43,12 +43,27 @@ class HomeFragment : Fragment(), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+
+
         initRecyclerViewAdapters()
         initRecyclerViews()
         setOffSetToRecView()
         (activity as HomeActivity).showBottomNavigationView()
+        attachAdapters()
 
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        binding.apply {
+            barlygy1.setOnClickListener { toSanat(1)}
+            barlygy2.setOnClickListener { toSanat(2)}
+            barlygy3.setOnClickListener { toSanat(3)}
+            barlygy4.setOnClickListener { toSanat(4)}
+            barlygy5.setOnClickListener { toSanat(5)}
+            barlygy6.setOnClickListener { toSanat(6)}
+            barlygy7.setOnClickListener { toSanat(7)}
+        }
+    }
+
+    private fun attachAdapters(){
         viewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
             adapter.submitList(movies)
             adapter3.submitList(movies)
@@ -78,16 +93,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
         viewModel.shetel.observe(viewLifecycleOwner, Observer { movies ->
             adapter10.submitList(movies)
         })
-
-        binding.apply {
-            barlygy1.setOnClickListener { toSanat(1)}
-            barlygy2.setOnClickListener { toSanat(2)}
-            barlygy3.setOnClickListener { toSanat(3)}
-            barlygy4.setOnClickListener { toSanat(4)}
-            barlygy5.setOnClickListener { toSanat(5)}
-            barlygy6.setOnClickListener { toSanat(6)}
-            barlygy7.setOnClickListener { toSanat(7)}
-        }
     }
 
     private fun initRecyclerViews() {

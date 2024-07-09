@@ -18,6 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class HomeViewModel(application: Application): AndroidViewModel(application) {
 
     private lateinit var mainApi: MainApi
+    private val sharedPreferences = getApplication<Application>().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
+    private val token = sharedPreferences.getString("token_key", null)
 
     private val _movies = MutableLiveData<List<Movy>>()
     val movies: LiveData<List<Movy>> get() = _movies
@@ -46,9 +48,21 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     private val _shetel = MutableLiveData<List<Movy>>()
     val shetel: LiveData<List<Movy>> get() = _shetel
 
+    private val _idfordetailed = MutableLiveData<Int>()
+    val idfordetailed: LiveData<Int> get() = _idfordetailed
+
+    private val _detailed = MutableLiveData<Movy>()
+    val detailed: LiveData<Movy> get() = _detailed
+
+    private val _uqsasgenre = MutableLiveData<List<ContentX>>()
+    val uqsasgenre: LiveData<List<ContentX>> get() = _uqsasgenre
+
+    private val _screenshot = MutableLiveData<List<Screenshot>>()
+    val screenshot: LiveData<List<Screenshot>> get() = _screenshot
+
     init {
         initRetrofit()
-        fetchData()
+        fetchHomeFragment()
     }
 
     private fun initRetrofit() {
@@ -65,9 +79,8 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
         mainApi = retrofit.create(MainApi::class.java)
     }
 
-    private fun fetchData() {
-        val sharedPreferences = getApplication<Application>().getSharedPreferences("Authotification", Context.MODE_PRIVATE)
-        val token = sharedPreferences.getString("token_key", null)
+    private fun fetchHomeFragment() {
+
         if (token != null) {
             viewModelScope.launch {
                 try {
@@ -91,6 +104,19 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
                     Log.e("HomeViewModel", "Exception: ${e.message}")
                 }
             }
+        }
+    }
+
+    fun setIdDetaied(id: Int){
+        _idfordetailed.value = id
+        viewModelScope.launch {
+            val responce = mainApi.getMovie(id = id, token = "Bearer $token")
+            val responce1 = mainApi.uqsasMovies(direction = "DESC", genreId = id, token = "Bearer $token")
+            val responce2 = mainApi.getScreenshots(id = id, token = "Bearer $token")
+
+            _detailed.value = responce
+            _uqsasgenre.value = responce1.content
+            _screenshot.value = responce2
         }
     }
 }

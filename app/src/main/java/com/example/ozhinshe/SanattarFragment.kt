@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -51,6 +54,7 @@ class SanattarFragment : Fragment(), OnItemClickListener {
     private lateinit var adapter7: Derekti2Adapter
     private lateinit var adapter8: Shetel2Adapter
     private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,7 +67,7 @@ class SanattarFragment : Fragment(), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRetrofit()
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         setDivider()
         val token = getToken()
         initRecyclerViewAdapters()
@@ -98,35 +102,42 @@ class SanattarFragment : Fragment(), OnItemClickListener {
                 }
             }
         }
-        lifecycleScope.launch(Dispatchers.IO) {
-            val response: MovieResponce = mainApi.getMovies(token = "Bearer $token")
-            val responce2: DescMovies = mainApi.descMovies(token = "Bearer $token")
-            val responce3: DescMovies =mainApi.genreMovies(direction = "DESC", genreId = 31, token = "Bearer $token")
-            val responce4: DescMovies = mainApi.genreMovies(direction = "ASC", genreId = 5, token = "Bearer $token")
-            lifecycleScope.launch(Dispatchers.Main) {
-                when(int){
-                    1 -> {
-                        adapter2.submitList(response[0].movies)
-                    }
-                    2 -> {
-                        adapter3.submitList(response[1].movies)
-                    }
-                    3 -> {
-                        adapter4.submitList(responce2.content)
-                    }
-                    4 -> {
-                        adapter5.submitList(responce3.content)
-                    }
-                    5 -> {
-                        adapter6.submitList(responce4.content)
-                    }
-                    6 -> {
-                        adapter7.submitList(response[3].movies)
-                    }
-                    7 -> {
-                        adapter8.submitList(response[4].movies)
-                    }
-                }
+
+        when(int){
+            1 -> {
+                viewModel.wathed.observe(viewLifecycleOwner, Observer { movies ->
+                    adapter2.submitList(movies)
+                })
+            }
+            2 -> {
+                viewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
+                    adapter3.submitList(movies)
+                })
+            }
+            3 -> {
+                viewModel.zhoba.observe(viewLifecycleOwner, Observer { movies ->
+                    adapter4.submitList(movies)
+                })
+            }
+            4 -> {
+                viewModel.reality.observe(viewLifecycleOwner, Observer { movies ->
+                    adapter5.submitList(movies)
+                })
+            }
+            5 -> {
+                viewModel.telehikaya.observe(viewLifecycleOwner, Observer { movies ->
+                    adapter6.submitList(movies)
+                })
+            }
+            6 -> {
+                viewModel.derekti.observe(viewLifecycleOwner, Observer { movies ->
+                    adapter7.submitList(movies)
+                })
+            }
+            7 -> {
+                viewModel.shetel.observe(viewLifecycleOwner, Observer { movies ->
+                    adapter8.submitList(movies)
+                })
             }
         }
 
@@ -135,15 +146,6 @@ class SanattarFragment : Fragment(), OnItemClickListener {
         binding.imageButton.setOnClickListener {
             findNavController().popBackStack()
         }
-    }
-    fun initRetrofit(){
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        val BASE_URL = "http://api.ozinshe.com"
-        val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL).client(client).addConverterFactory(
-            GsonConverterFactory.create()).build()
-        mainApi = retrofit.create(MainApi::class.java)
     }
     private fun setDivider(){
         layoutManager = LinearLayoutManager(requireContext())
@@ -167,7 +169,6 @@ class SanattarFragment : Fragment(), OnItemClickListener {
             rcView7.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
             rcView8.addItemDecoration(CardDecoration(topOffset = 16f.toInt(), bottomOffset = 16f.toInt()))
         }
-
     }
     fun getToken(): String{
         val sharedPreferences = requireContext().getSharedPreferences("Authotification", Context.MODE_PRIVATE)

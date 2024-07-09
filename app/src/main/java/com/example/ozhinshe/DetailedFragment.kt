@@ -43,6 +43,8 @@ class DetailedFragment : Fragment(), OnItemClickListener {
     private lateinit var itemViewModel: ItemViewModel
     private var isExpanded = false
     private lateinit var viewModel: HomeViewModel
+    private var seriesCount:  Int = 0
+    private var posterLink: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -133,6 +135,8 @@ class DetailedFragment : Fragment(), OnItemClickListener {
             binding.director.text = responce.director
             binding.producer.text = responce.producer
             binding.bolimder.text = "" + responce.seasonCount + " сезон," + responce.seriesCount + " серия"
+            posterLink = responce.screenshots[0].link
+            seriesCount = responce.seriesCount
         })
         viewModel.uqsasgenre.observe(viewLifecycleOwner, Observer { response ->
             adapter.submitList(response)
@@ -162,8 +166,8 @@ class DetailedFragment : Fragment(), OnItemClickListener {
     override fun onSeasonClick(id: Int) {
         val bundle = Bundle()
         bundle.putInt("id", id)
-        //bundle.putInt("seriesCount", responce.seriesCount)
-        //bundle.putString("posterLink", responce.screenshots[0].link)
+        bundle.putInt("seriesCount", seriesCount)
+        bundle.putString("posterLink", posterLink)
         findNavController().navigate(R.id.action_detailedFragment_to_bolimFragment, bundle)
     }
 }

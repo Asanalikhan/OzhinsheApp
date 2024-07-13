@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Background"
-        tools:context=".sign.RegistrationFragment">
+        tools:context=".presentation.sign.RegistrationFragment">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"

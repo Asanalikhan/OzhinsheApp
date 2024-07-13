@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     style="@style/Background"
     android:orientation="vertical"
-    tools:context=".SearchFragment">
+    tools:context=".presentation.basic.SearchFragment">
 
     <ImageButton
         android:id="@+id/imageButton"

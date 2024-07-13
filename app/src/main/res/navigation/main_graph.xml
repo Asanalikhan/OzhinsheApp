@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.ozhinshe.HomeFragment"
+        android:name="com.example.ozhinshe.presentation.basic.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.ozhinshe.profile.ProfileFragment"
+        android:name="com.example.ozhinshe.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookmarkFragment"
-        android:name="com.example.ozhinshe.BookmarkFragment"
+        android:name="com.example.ozhinshe.presentation.basic.BookmarkFragment"
         android:label="fragment_bookmark"
         tools:layout="@layout/fragment_bookmark" >
         <action
@@ -46,12 +46,12 @@
     </fragment>
     <activity
         android:id="@+id/homeActivity"
-        android:name="com.example.ozhinshe.HomeActivity"
+        android:name="com.example.ozhinshe.presentation.basic.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.ozhinshe.SearchFragment"
+        android:name="com.example.ozhinshe.presentation.basic.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -63,22 +63,22 @@
     </fragment>
     <fragment
         android:id="@+id/zhekeDerekterFragment"
-        android:name="com.example.ozhinshe.profile.ZhekeDerekterFragment"
+        android:name="com.example.ozhinshe.presentation.profile.ZhekeDerekterFragment"
         android:label="fragment_zheke_derekter"
         tools:layout="@layout/fragment_zheke_derekter" />
     <fragment
         android:id="@+id/qupiyaFragment"
-        android:name="com.example.ozhinshe.profile.QupiyaFragment"
+        android:name="com.example.ozhinshe.presentation.profile.QupiyaFragment"
         android:label="fragment_qupiya"
         tools:layout="@layout/fragment_qupiya" />
     <fragment
         android:id="@+id/bolimFragment"
-        android:name="com.example.ozhinshe.BolimFragment"
+        android:name="com.example.ozhinshe.presentation.basic.BolimFragment"
         android:label="fragment_bolim"
         tools:layout="@layout/fragment_bolim" />
     <fragment
         android:id="@+id/sanattarFragment"
-        android:name="com.example.ozhinshe.SanattarFragment"
+        android:name="com.example.ozhinshe.presentation.basic.SanattarFragment"
         android:label="fragment_sanattar"
         tools:layout="@layout/fragment_sanattar" >
         <action
@@ -87,7 +87,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailedFragment"
-        android:name="com.example.ozhinshe.DetailedFragment"
+        android:name="com.example.ozhinshe.presentation.basic.DetailedFragment"
         android:label="fragment_detailed"
         tools:layout="@layout/fragment_detailed" >
         <action

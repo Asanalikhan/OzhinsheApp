@@ -9,7 +9,7 @@
     android:id="@+id/nav_host_fragment_home"
     android:name="androidx.navigation.fragment.NavHostFragment"
     app:navGraph="@navigation/nav_graph"
-    tools:context=".HomeFragment">
+    tools:context=".presentation.basic.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

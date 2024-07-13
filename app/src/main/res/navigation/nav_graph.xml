@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onBoardFragment"
-        android:name="com.example.ozhinshe.sign.OnBoardFragment"
+        android:name="com.example.ozhinshe.presentation.sign.OnBoardFragment"
         android:label="fragment_on_board"
         tools:layout="@layout/fragment_on_board" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.ozhinshe.sign.MainActivity"
+        android:name="com.example.ozhinshe.presentation.sign.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.ozhinshe.sign.RegistrationFragment"
+        android:name="com.example.ozhinshe.presentation.sign.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/authorizationFragment"
-        android:name="com.example.ozhinshe.sign.AuthorizationFragment"
+        android:name="com.example.ozhinshe.presentation.sign.AuthorizationFragment"
         android:label="fragment_authorization"
         tools:layout="@layout/fragment_authorization" >
         <action
@@ -54,7 +54,7 @@
     </fragment>
     <activity
         android:id="@+id/homeActivity2"
-        android:name="com.example.ozhinshe.HomeActivity"
+        android:name="com.example.ozhinshe.presentation.basic.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
 </navigation>
